@@ -14,3 +14,13 @@ def demander_nombre(message, min_val=None, max_val=None):
 
 # print(demander_nombre("nb entre 1-9 : ",1,9))
 # entrée(0) : sortie(redemande); entrée(1) : sortie(renvoie 1)
+
+def demander_choix(message, options):
+    print(message)
+    for i in range(len(options)):
+        print(str(i+1)+". ",options[i])
+    choix=demander_nombre("Votre choix : ",1,len(options))
+    return options[choix-1]
+
+#print(demander_choix("Voulez-vous continuer ?",['oui','non']))
+#entrée(78) sortie(redemande); entrée(1) : sortie(oui)
