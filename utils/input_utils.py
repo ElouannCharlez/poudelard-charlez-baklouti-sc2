@@ -6,3 +6,10 @@ def demander_nombre(message, min_val=None, max_val=None):
 
 # print(demander_nombre("nb entre 1-9 : ",1,9))
 # entrée(0) : sortie(redemande); entrée(1) : sortie(renvoie 1)
+def demander_texte(message):
+    saisie = input(message)
+    while saisie.strip() == "":
+        saisie = input(message)
+    return saisie.strip()
+#print(demander_texte("saisie un nom : "))
+#test avec " abcd " renvoie abcd
