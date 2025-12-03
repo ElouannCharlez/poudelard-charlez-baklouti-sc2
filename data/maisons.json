@@ -1,0 +1,4 @@
+import json
+
+with open('maisons.json', 'r', encoding='utf-8') as f:
+  maisons = json.load(f)

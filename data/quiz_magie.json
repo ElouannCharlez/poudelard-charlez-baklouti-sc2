@@ -1,0 +1,4 @@
+import json
+
+with open('quiz_magie.json', 'r', encoding='utf-8') as f:
+  quiz_magie = json.load(f)

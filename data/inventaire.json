@@ -1,0 +1,4 @@
+import json
+
+with open('inventaire.json', 'r', encoding='utf-8') as f:
+  inventaire = json.load(f)

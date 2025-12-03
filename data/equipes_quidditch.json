@@ -1,0 +1,4 @@
+import json
+
+with open('equipes_quidditch.json', 'r', encoding='utf-8') as f:
+  equipes_quidditch = json.load(f)
