@@ -1,3 +1,6 @@
+from utils.input_utils import demander_choix
+
+
 def actualiser_points_maison(maisons, nom_maison, points):
     if nom_maison in maisons:
         maisons[nom_maison] += points
@@ -40,7 +43,11 @@ def afficher_maison_gagnante(maisons):
 #afficher_maison_gagnante(maisons)
 
 def repartition_maison(joueur, questions):
-    pass
+    attribus=joueur["Attributs"]
+    for val in attribus:
+        attribus[val]=attribus[val]*2
+
+
     #créer un dictionnaire avec les attribus du joueur ( joueur["Attribus"] ) et faire *2
 
     #utiliser demander_choix du imput_utils pour chaque propositions
