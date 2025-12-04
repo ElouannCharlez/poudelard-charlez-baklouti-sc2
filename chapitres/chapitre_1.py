@@ -11,17 +11,17 @@ def creer_personnage():
     print()
     print("Choisissez vos attributs : ")
     courage = 0
-    while not (1 <= courage <= 10):
-        courage = int(input("Niveau de courage (1-10) : "))
-    intel = 0
-    while not (1 <= intel <= 10):
-        intel = int(input("Niveau d’intelligence (1-10) : "))
-    loyaute=0
-    while not (1 <= loyaute <= 10):
-        loyaute = int(input("Niveau de loyauté (1-10) : "))
-    ambition = 0
-    while not (1 <= ambition <= 10):
-        ambition = int(input("Niveau d'ambition (1-10) : "))
+    # while not (1 <= courage <= 10):
+    #     courage = int(input("Niveau de courage (1-10) : "))
+    # intel = 0
+    # while not (1 <= intel <= 10):
+    #     intel = int(input("Niveau d’intelligence (1-10) : "))
+    # loyaute=0
+    # while not (1 <= loyaute <= 10):
+    #     loyaute = int(input("Niveau de loyauté (1-10) : "))
+    # ambition = 0
+    # while not (1 <= ambition <= 10):
+    #     ambition = int(input("Niveau d'ambition (1-10) : "))
     print()
     attributs = {"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
     joueur = initialiser_personnage(nom,prenom,attributs)
@@ -30,7 +30,8 @@ def creer_personnage():
 
 # creer_personnage()
 
-from utils.input_utils import demander_choix
+from utils.input_utils import *
+from univers.personnage import *
 def recevoir_lettre():
     print("Une chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard...")
     print("« Cher élève,")
@@ -49,11 +50,50 @@ def rencontrer_hagrid(personnage):
     print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.'")
     choix = demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
     if choix == 1:
-        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
+        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!\n")
     return None
 
-perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
-rencontrer_hagrid(perso)
+# perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
+# rencontrer_hagrid(perso)
+
+
+import json
 
 def acheter_fournitures(personnage):
-    pass
+    with open('../data/inventaire.json', 'r', encoding='utf-8') as f:
+        inventaire = json.load(f)
+    objets_obli = {"Baguette magique":35, "Robe de sorcier":20, "Manuel de potions":25}
+    objets_obli_achete = []
+    print("Bienvenue sur le Chemin de Traverse ! \n")
+    print("Catalogue des objets disponibles : \n")
+    for cle in inventaire:
+        print(cle + ". " + inventaire[cle][0] + " - " + str(inventaire[cle][1]) + " galions \n")
+    while len(objets_obli_achete) != 3:
+        print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
+        print("Objets obligatoires restant à acheter : ", end="")
+        for i in range(len(objets_obli)):
+            if objets_obli[i][0] not in objets_obli_achete:
+                print(objets_obli[i][0] + ", "*(i != 2-len(objets_obli_achete)), end="")
+        numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
+        if inventaire[str(numero)] in personnage["Inventaire"]:
+            print("\nObjet déjà acheté ! \n")
+        else:
+            if personnage["Argent"] - inventaire[str(numero)][1] < 0:
+                print("\nVous n'avez pas assez d'argent...\n")
+            else:
+                if inventaire[str(numero)][0] in objets_obli:
+                    objets_obli_achete.append(inventaire[str(numero)][0])
+                modifier_argent(personnage, -inventaire[str(numero)][1])
+                print("\nVous avez acheté : " + inventaire[str(numero)][0] + "(-" + str(inventaire[str(numero)][1]) + " galions).\n")
+        somme=0
+        for item in objets_obli:
+            if item not in objets_obli_achete:
+                somme += objets_obli[item]
+        if personnage["Argent"] - somme < 0:
+            print("Vous avez mal gérez votre argent...\n")
+            exit()
+
+def argent_manquant(personnage, )
+
+perso=initialiser_personnage("Baklouti","Youssef",{'courage : 8'})
+acheter_fournitures(perso)
