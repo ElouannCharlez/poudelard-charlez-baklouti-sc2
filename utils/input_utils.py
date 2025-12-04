@@ -25,7 +25,7 @@ def demander_choix(message, options):
 
 #print(demander_choix("Voulez-vous continuer ?",['oui','non']))
 #entrée(78) sortie(redemande); entrée(1) : sortie(oui)
-
+abc
 import json
 def load_fichier(chemin_fichier):
     with open(chemin_fichier, 'r', encoding='utf-8') as f:
