@@ -10,20 +10,20 @@ def creer_personnage():
     prenom = input("Entrez le prénom de votre personnage : ")
     print()
     print("Choisissez vos attributs : ")
-    courage=0
-    while not (1<=courage<=10):
+    courage = 0
+    while not (1 <= courage <= 10):
         courage = int(input("Niveau de courage (1-10) : "))
-    intel=0
-    while not (1<=intel<=10):
+    intel = 0
+    while not (1 <= intel <= 10):
         intel = int(input("Niveau d’intelligence (1-10) : "))
     loyaute=0
-    while not (1<=loyaute<=10):
+    while not (1 <= loyaute <= 10):
         loyaute = int(input("Niveau de loyauté (1-10) : "))
-    ambition=0
-    while not (1<=ambition<=10):
+    ambition = 0
+    while not (1 <= ambition <= 10):
         ambition = int(input("Niveau d'ambition (1-10) : "))
     print()
-    attributs={"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
+    attributs = {"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
     joueur = initialiser_personnage(nom,prenom,attributs)
     afficher_personnage(joueur)
     return joueur
@@ -47,10 +47,10 @@ def recevoir_lettre():
 
 def rencontrer_hagrid(personnage):
     print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats surle Chemin de Traverse.'")
-    choix=demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
-    if choix=="Non":
+    choix = demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
+    if choix == "Non":
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
     return None
 
-perso={'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
+perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
 rencontrer_hagrid(perso)
