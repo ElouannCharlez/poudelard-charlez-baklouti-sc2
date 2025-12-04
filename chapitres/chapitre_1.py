@@ -56,3 +56,4 @@ perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': []
 rencontrer_hagrid(perso)
 
 def acheter_fournitures(personnage):
+    pass
