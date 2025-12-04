@@ -43,9 +43,9 @@ def afficher_maison_gagnante(maisons):
 #afficher_maison_gagnante(maisons)
 
 def repartition_maison(joueur, questions):
-    attribus=joueur["Attributs"]
+    attribus = joueur["Attributs"]
     for val in attribus:
-        attribus[val]=attribus[val]*2
+        attribus[val] = attribus[val]*2
 
 
     #créer un dictionnaire avec les attribus du joueur ( joueur["Attribus"] ) et faire *2
