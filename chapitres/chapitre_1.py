@@ -1,8 +1,10 @@
+from univers.personnage import initialiser_personnage, afficher_personnage
+
+
 def introduction():
     print("Bienvenue ! Prépare-toi : le premier chapitre de ton voyage vers Poudlard commence maintenant.")
     input()
 
-from univers.personnage import initialiser_personnage, afficher_personnage
 def creer_personnage():
     nom = input("Entrez le nom de votre personnage : ")
     prenom = input("Entrez le prénom de votre personnage : ")
