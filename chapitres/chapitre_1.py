@@ -46,7 +46,7 @@ def recevoir_lettre():
 # recevoir_lettre()
 
 def rencontrer_hagrid(personnage):
-    print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats surle Chemin de Traverse.'")
+    print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.'")
     choix = demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
     if choix == 1:
         print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
