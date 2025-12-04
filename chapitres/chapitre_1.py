@@ -54,3 +54,5 @@ def rencontrer_hagrid(personnage):
 
 perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
 rencontrer_hagrid(perso)
+
+def acheter_fournitures(personnage):
