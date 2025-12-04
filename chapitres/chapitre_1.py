@@ -43,5 +43,14 @@ def recevoir_lettre():
     print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
     return 0 # pour dire qu'il a refusé
 
-recevoir_lettre()
+# recevoir_lettre()
 
+def rencontrer_hagrid(personnage):
+    print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats surle Chemin de Traverse.'")
+    choix=demander_choix("Voulez-vous suivre Hagrid ?", ["Oui", "Non"])
+    if choix=="Non":
+        print("Hagrid insiste gentiment et vous entraîne quand même avec lui!")
+    return None
+
+perso={'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
+rencontrer_hagrid(perso)
