@@ -40,3 +40,10 @@ def afficher_maison_gagnante(maisons):
 
 def repartition_maison(joueur, questions):
     pass
+    #créer un dictionnaire avec les attribus du joueur ( joueur["Attribus"] ) et faire *2
+
+    #utiliser demander_choix du imput_utils pour chaque propositions
+
+    #entre chaque choix ajouter les points de la réponse choisie (3pts)
+
+    #attention dans le dictionnaire : choix = i+1 != i
