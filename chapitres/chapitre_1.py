@@ -38,10 +38,10 @@ def recevoir_lettre():
     choix=demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ?",["Oui, bien sûr !", "Non, je préfère rester avec l’oncle Vernon..."])
     if choix=="Oui, bien sûr !":
         return 1 # pour dire que ça continue
-    print("Vous déchirez la lettre, l’oncle Vernon pousse un cri de joie:")
+    print("\nVous déchirez la lettre, l’oncle Vernon pousse un cri de joie:")
     print("« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! »")
     print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
     return 0 # pour dire qu'il a refusé
 
-# recevoir_lettre()
+recevoir_lettre()
 
