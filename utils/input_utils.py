@@ -21,7 +21,7 @@ def demander_choix(message, options):
     for i in range(len(options)):
         print(str(i+1)+". ",options[i])
     choix=demander_nombre("Votre choix : ",1,len(options))
-    return options[choix-1]
+    return choix-1
 
 #print(demander_choix("Voulez-vous continuer ?",['oui','non']))
 #entrée(78) sortie(redemande); entrée(1) : sortie(oui)
