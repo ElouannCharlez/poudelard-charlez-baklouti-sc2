@@ -17,7 +17,7 @@ def afficher_personnage(joueur) :
         print("- ",val)
     print("Attributs : ")
     for val in joueur["Attributs"]:
-        print("- ",val)
+        print("- ", val, " : ", joueur["Attributs"][val])
     return None
 
 # perso=initialiser_personnage("Baklouti","Youssef",{'courage : 8'})
