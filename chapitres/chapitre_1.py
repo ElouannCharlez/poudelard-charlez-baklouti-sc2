@@ -14,29 +14,19 @@ def creer_personnage():
     intel=0
     while not (1<=intel<=10):
         intel = int(input("Niveau d’intelligence (1-10) : "))
-    loyauté=0
-    while not (1<=loyauté<=10):
-        loyauté = int(input("Niveau de loyauté (1-10) : "))
+    loyaute=0
+    while not (1<=loyaute<=10):
+        loyaute = int(input("Niveau de loyauté (1-10) : "))
     ambition=0
     while not (1<=ambition<=10):
         ambition = int(input("Niveau d'ambition (1-10) : "))
     print()
-    attributs={"courage":courage,"intelligence":intel,"loyauté":loyauté,"ambition":ambition}
+    attributs={"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
     joueur = initialiser_personnage(nom,prenom,attributs)
     afficher_personnage(joueur)
-    return None
-    # perso=initialiser_personnage(nom, prenom, attributs)
-    # print("Profil du personnage : ")
-    # print("Nom :",nom)
-    # print("Prenom :",prenom)
-    # print("Argent : 100")
-    # print("Inventaire : ")
-    # print("Sortilèges : ")
-    # print("Attributs : ")
-    # for a,b in attributs.items():
-    #     print("- {} : {}".format(a,b))
-    # return perso
-#a=creer_personnage()
+    return joueur
+
+# creer_personnage()
 
 from utils.input_utils import demander_choix
 def recevoir_lettre():
@@ -50,4 +40,6 @@ def recevoir_lettre():
     print("« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! »")
     print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
     return 0 # pour dire qu'il a refusé
-recevoir_lettre()
+
+# recevoir_lettre()
+

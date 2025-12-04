@@ -36,6 +36,7 @@ def afficher_maison_gagnante(maisons):
         print("Les maisons gagnantes sont : ")
         for val in l:
             print("- ",val)
+
 #afficher_maison_gagnante(maisons)
 
 def repartition_maison(joueur, questions):
