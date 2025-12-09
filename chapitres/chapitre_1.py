@@ -1,5 +1,5 @@
 from univers.personnage import initialiser_personnage, afficher_personnage
-
+from utils.input_utils import demander_nombre
 
 def introduction():
     print("Bienvenue ! Prépare-toi : le premier chapitre de ton voyage vers Poudlard commence maintenant.")
@@ -10,25 +10,17 @@ def creer_personnage():
     prenom = input("Entrez le prénom de votre personnage : ")
     print()
     print("Choisissez vos attributs : ")
-    courage = 0
-    # while not (1 <= courage <= 10):
-    #     courage = int(input("Niveau de courage (1-10) : "))
-    # intel = 0
-    # while not (1 <= intel <= 10):
-    #     intel = int(input("Niveau d’intelligence (1-10) : "))
-    # loyaute=0
-    # while not (1 <= loyaute <= 10):
-    #     loyaute = int(input("Niveau de loyauté (1-10) : "))
-    # ambition = 0
-    # while not (1 <= ambition <= 10):
-    #     ambition = int(input("Niveau d'ambition (1-10) : "))
+    courage = demander_nombre("Niveau de courage (1-10) : ",1,10)
+    intel = demander_nombre("Niveau d’intelligence (1-10) : ",1,10)
+    loyaute = demander_nombre("Niveau de loyauté (1-10) : ",1,10)
+    ambition = demander_nombre("Niveau d'ambition (1-10) : ",1,10)
     print()
     attributs = {"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
     joueur = initialiser_personnage(nom,prenom,attributs)
     afficher_personnage(joueur)
     return joueur
 
-# creer_personnage()
+#creer_personnage()
 
 from utils.input_utils import *
 from univers.personnage import *
