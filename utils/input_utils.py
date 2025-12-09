@@ -2,9 +2,12 @@ import json
 
 
 def demander_texte(message):
-    saisie = input(message)
+    print(message)
+    saisie = input()
     while saisie.strip() == "":
-        saisie = input(message)
+        print(message)
+        saisie = input()
+    print()
     return saisie.strip()
 
 #print(demander_texte("saisie un nom : "))
