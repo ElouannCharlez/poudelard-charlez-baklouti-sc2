@@ -32,7 +32,7 @@ def recevoir_lettre():
     print("« Cher élève,")
     print("Nous avons le plaisir de vous informer que vous avez été admis à l’école de sorcellerie de Poudlard ! »\n")
     choix = demander_choix("Souhaitez-vous accepter cette invitation et partir pour Poudlard ?",["Oui, bien sûr !", "Non, je préfère rester avec l’oncle Vernon..."])
-    if choix == 0:
+    if choix == 1:
         print("\nVous déchirez la lettre, l’oncle Vernon pousse un cri de joie:")
         print("« EXCELLENT ! Enfin quelqu’un de NORMAL dans cette maison ! »")
         print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
