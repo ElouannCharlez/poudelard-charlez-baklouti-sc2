@@ -29,7 +29,7 @@ def creer_personnage():
     return joueur
 
 # creer_personnage()
-huhu
+
 from utils.input_utils import *
 from univers.personnage import *
 def recevoir_lettre():
@@ -44,7 +44,7 @@ def recevoir_lettre():
     print("Le monde magique ne saura jamais que vous existiez... Fin du jeu.")
     return 0 # pour dire qu'il a refusé
 
-# recevoir_lettre()
+#recevoir_lettre()
 
 def rencontrer_hagrid(personnage):
     print("Hagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.'")
@@ -59,49 +59,62 @@ def rencontrer_hagrid(personnage):
 
 import json
 
+
 def acheter_fournitures(personnage):
-    with open('../data/inventaire.json', 'r', encoding='utf-8') as f:
-        inventaire = json.load(f)
-    objets_obli = [["Baguette magique", 35], ["Robe de sorcier", 20], ["Manuel de potions", 25]]
-    objets_obli_achete = []
-    print("Bienvenue sur le Chemin de Traverse ! \n")
-    print("Catalogue des objets disponibles : \n")
-    for cle in inventaire:
-        print(cle + ". " + inventaire[cle][0] + " - " + str(inventaire[cle][1]) + " galions \n")
-    while len(objets_obli_achete) != 3:
-        print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
-        print("Objets obligatoires restant à acheter : ", end="")
-        vu=0
-        for i in range(len(objets_obli)):
-            if objets_obli[i][0] not in objets_obli_achete:
-                print(objets_obli[i][0] + ", "*(i-vu != 2-len(objets_obli_achete)), end="")
-            else:
-                vu+=1
-        numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
-        if inventaire[str(numero)] in personnage["Inventaire"]:
-            print("\nObjet déjà acheté ! \n")
-        else:
-            if personnage["Argent"] - inventaire[str(numero)][1] < 0:
-                print("\nVous n'avez pas assez d'argent...\n")
-            else:
-                for k in range(len(objets_obli)):
-                    if inventaire[str(numero)][0] in objets_obli[k]:
-                        objets_obli_achete.append(inventaire[str(numero)][0])
-                modifier_argent(personnage, -inventaire[str(numero)][1])
-                print("\nVous avez acheté : " + inventaire[str(numero)][0] + " (-" + str(inventaire[str(numero)][1]) + " galions).\n")
-        somme=0
-        for item in objets_obli:
-            if item[0] not in objets_obli_achete:
-                somme += item[1]
-        if personnage["Argent"] - somme < 0:
-            print("Vous avez mal gérez votre argent...\n")
-            exit()
-    print("Tous les objets obligatoires ont été achetés !\n")
-    print("Il est temps de choisir votre animal de compagnie pour Poudlard !")
+   with open('../data/inventaire.json', 'r', encoding='utf-8') as f:
+       inventaire = json.load(f)
+   objets_obli = [["Baguette magique", 35], ["Robe de sorcier", 20], ["Manuel de potions", 25]]
+   objets_obli_achete = []
+   print("Bienvenue sur le Chemin de Traverse ! \n")
+   print("Catalogue des objets disponibles : \n")
+   for cle in inventaire:
+       print(cle + ". " + inventaire[cle][0] + " - " + str(inventaire[cle][1]) + " galions \n")
+   while len(objets_obli_achete) != 3:
+       print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
+       print("Objets obligatoires restant à acheter : ", end="")
+       vu=0
+       for i in range(len(objets_obli)):
+           if objets_obli[i][0] not in objets_obli_achete:
+               print(objets_obli[i][0] + ", "*(i-vu != 2-len(objets_obli_achete)), end="")
+           else:
+               vu+=1
+       numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
+       if inventaire[str(numero)] in personnage["Inventaire"]:
+           print("\nObjet déjà acheté ! \n")
+       else:
+           if personnage["Argent"] - inventaire[str(numero)][1] < 0:
+               print("\nVous n'avez pas assez d'argent...\n")
+           else:
+               for k in range(len(objets_obli)):
+                   if inventaire[str(numero)][0] in objets_obli[k]:
+                       objets_obli_achete.append(inventaire[str(numero)][0])
+               ajouter_objet(personnage, "Inventaire", inventaire[str(numero)][0])
+               modifier_argent(personnage, -inventaire[str(numero)][1])
+               print("\nVous avez acheté : " + inventaire[str(numero)][0] + " (-" + str(inventaire[str(numero)][1]) + " galions).\n")
+       somme=0
+       for item in objets_obli:
+           if item[0] not in objets_obli_achete:
+               somme += item[1]
+       if personnage["Argent"] - somme < 5: #5 et pes 0 car il faut un animal et le moins chère est le crapaud(5)
+           print("Vous avez mal gérez votre argent...\n")
+           exit()
+   print("Tous les objets obligatoires ont été achetés !\n")
+   print("Il est temps de choisir votre animal de compagnie pour Poudlard !\n")
+   print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
+   print("Voici les animaux disponibles :\n")
+   animaux={"1":["Chouette", 20], "2":["Chat", 15], "3":["Rat", 10], "4":["Crapaud", 5]}
+   for cle in animaux:
+       print(cle + ". " + animaux[cle][0] + " - " + str(animaux[cle][1]) + " galions \n")
+   numero = demander_nombre("Entrez le numéro de l'objet à acheter : ", 1, 4)
+   prix = personnage["Argent"] - animaux[str(numero)][1]
+   while prix<0:
+       print("\nIl serait bien de savoir lire les étiquettes... Prend un animal que tu peux te permettre !\n")
+       numero = demander_nombre("Entrez le numéro de l'objet à acheter : ", 1, 4)
+       prix = personnage["Argent"]-animaux[str(numero)][1]
+   ajouter_objet(personnage, "Inventaire", animaux[str(numero)][0])
+   modifier_argent(personnage, -animaux[str(numero)][1])
+   afficher_personnage(personnage)
 
 
-
-
-
-perso=initialiser_personnage("Baklouti","Youssef",{'courage : 8'})
-acheter_fournitures(perso)
+# perso=initialiser_personnage("Baklouti","Youssef",{})
+# acheter_fournitures(perso)
