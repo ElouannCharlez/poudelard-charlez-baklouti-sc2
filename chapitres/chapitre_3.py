@@ -46,3 +46,4 @@ def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
             points+=25
         else:
             print("Mauvaise réponse. La bonne réponse était : ", questions[i]["nom"])
+

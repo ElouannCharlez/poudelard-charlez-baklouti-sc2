@@ -1,5 +1,5 @@
 from utils.input_utils import demander_choix
-
+from univers.maison import repartition_maison
 
 def  rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
@@ -33,7 +33,55 @@ def  rencontrer_amis(joueur):
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("Tes attributs mis à jour : ",joueur['Attributs'])
 
-# from chapitres.chapitre_1 import *
-# joueur=creer_personnage()
+from chapitres.chapitre_1 import *
+joueur=creer_personnage()
 # rencontrer_amis(joueur)
 
+def mot_de_bienvenue():
+    print("Bienvenue à Poudlard ! Que cette année vous apporte de belles découvertes et beaucoup de magie.")
+    input()
+
+def ceremonie_repartition(joueur):
+    print("La cérémonie de répartition commence dans la Grande Salle...")
+    print("Le Choixpeau magique t’observe longuement avant de poser ses questions : ")
+    questions = [
+        (
+            "Tu vois un ami en danger. Que fais-tu ?",
+            ["Je fonce l'aider", "Je réfléchis à un plan", "Je cherche de l’aide", "Je reste calme et j’observe"],
+        ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        ),
+        (
+            "Quel trait te décrit le mieux ?",
+            ["Courageux et loyal", "Rusé et ambitieux", "Patient et travailleur", "Intelligent et curieux"],
+             ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        ),
+        (
+            "Face à un défi difficile, tu...",
+            ["Fonces sans hésiter", "Cherches la meilleure stratégie",
+             "Comptes sur tes amis", "Analyses le problème"],
+            ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
+        )
+    ]
+    choix_peau = repartition_maison(joueur, questions)
+    joueur['Maison']=choix_peau
+    print("Le Choixpeau s’exclame :",choix_peau,"!!!")
+    print("Tu rejoins les élèves de",choix_peau,"sous les acclamations !")
+    return choix_peau
+
+#ceremonie_repartition(joueur)
+from utils.input_utils import load_fichier
+
+
+def installation_salle_commune(joueur):
+    info_communes= load_fichier('')
+    maison = ceremonie_repartition(joueur)
+    print("Vous suivez les préfets à travers les couloirs du château...")
+    print(info_communes['maison']['emoji'],info_communes['maison']['description'])
+    print(info_communes['maison']['message_installation'])
+    print("Les couleurs de votre maison :",end="")
+    rses=""
+    for val in info_communes['maison']['couleurs'] :
+        res=res+val
+    print(res[:len(res)-1])
+
+installation_salle_commune(joueur)
