@@ -29,7 +29,7 @@ def creer_personnage():
     return joueur
 
 # creer_personnage()
-
+huhu
 from utils.input_utils import *
 from univers.personnage import *
 def recevoir_lettre():
