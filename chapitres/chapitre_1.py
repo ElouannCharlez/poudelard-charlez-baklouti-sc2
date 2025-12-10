@@ -15,11 +15,11 @@ def creer_personnage():
     print()
     print("Choisissez vos attributs : ")
     courage = demander_nombre("Niveau de courage (1-10) : ", 1, 10)
-    intel = demander_nombre("Niveau d’intelligence (1-10) : ", 1, 10)
+    intelligence = demander_nombre("Niveau d’intelligence (1-10) : ", 1, 10)
     loyaute = demander_nombre("Niveau de loyauté (1-10) : ", 1, 10)
     ambition = demander_nombre("Niveau d'ambition (1-10) : ", 1, 10)
     print()
-    attributs = {"courage":courage,"intelligence":intel,"loyauté":loyaute,"ambition":ambition}
+    attributs = {"courage":courage,"intelligence":intelligence,"loyauté":loyaute,"ambition":ambition}
     joueur = initialiser_personnage(nom,prenom,attributs)
     afficher_personnage(joueur)
     return joueur
@@ -67,8 +67,8 @@ def acheter_fournitures(personnage):
     while len(objets_obli_achete) != 3:
        print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
        print("Objets obligatoires restant à acheter : ", end="")
-       vu=0
-       for i in range(len(objets_obli)):
+       vu = 0    # variable qui sert dans la ligne 73 pour éviter d'écrire une ',' en plus à la fin
+       for i in range(len(objets_obli)):   # affiche les objets à acheter impérativement qui reste
            if objets_obli[i][0] not in objets_obli_achete:
                print(objets_obli[i][0] + ", "*(i-vu != 2-len(objets_obli_achete)), end="")
            else:
@@ -78,21 +78,21 @@ def acheter_fournitures(personnage):
            print("\nObjet déjà acheté ! \n")
        else:
            if personnage["Argent"] - inventaire[str(numero)][1] < 0:
-               print("\nVous n'avez pas assez d'argent...\n")
+               print("\nIl serait bien de savoir lire les étiquettes... Prend un animal que tu peux te permettre !\n")
            else:
-               for k in range(len(objets_obli)):
+               for k in range(len(objets_obli)):   # on regarde si c'était un objet nécessaire
                    if inventaire[str(numero)][0] in objets_obli[k]:
                        objets_obli_achete.append(inventaire[str(numero)][0])
                ajouter_objet(personnage, "Inventaire", inventaire[str(numero)][0])
                modifier_argent(personnage, -inventaire[str(numero)][1])
                print("\nVous avez acheté : " + inventaire[str(numero)][0] + " (-" + str(inventaire[str(numero)][1]) + " galions).\n")
-       somme=0
-       for item in objets_obli:
-           if item[0] not in objets_obli_achete:
-               somme += item[1]
-       if personnage["Argent"] - somme < 5: #5 et pes 0 car il faut un animal et le moins chère est le crapaud(5)
-           print("Vous avez mal gérez votre argent...\n")
-           exit()
+               somme=0   # test s'il reste assez d'argent pour pouvoir acheter tout ce qui est nécessaire
+               for item in objets_obli:
+                   if item[0] not in objets_obli_achete:
+                       somme += item[1]
+               if personnage["Argent"] - somme < 5: # 5 et pes 0 car il faut aussi un animal et le moins chère est le crapaud(5)
+                   print("À ce train là, même avec 1000 galions vous n'auriez pas tout acheté... Fin")
+                   exit()
     print("Tous les objets obligatoires ont été achetés !\n")
     print("Il est temps de choisir votre animal de compagnie pour Poudlard !\n")
     print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
@@ -102,7 +102,7 @@ def acheter_fournitures(personnage):
         print(cle + ". " + animaux[cle][0] + " - " + str(animaux[cle][1]) + " galions \n")
     numero = demander_nombre("Entrez le numéro de l'objet à acheter :", 1, 4)
     prix = personnage["Argent"] - animaux[str(numero)][1]
-    while prix<0:
+    while prix<0:   # tant qu'il n'a pas les moyens et qu'on sait qu'il peut s'acheter au minimum 1 animal (grâce à la l93), on répète
         print("Il serait bien de savoir lire les étiquettes... Prend un animal que tu peux te permettre !\n")
         numero = demander_nombre("Entrez le numéro de l'objet à acheter : ", 1, 4)
         prix = personnage["Argent"]-animaux[str(numero)][1]
@@ -124,5 +124,5 @@ def lancer_chapitre1():
     print("\nFin du chapitre 1 ! Votre aventure commence à Poudelard...\n")
     return perso
 
-if __name__== '__main__':
-    lancer_chapitre1()
+# if __name__== '__main__':
+#     lancer_chapitre1()
