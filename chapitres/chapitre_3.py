@@ -6,7 +6,7 @@ import random
 def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     print("\nTu commences tes cours de magie à Poudlard...")
     dico_sorts=load_fichier(chemin_fichier)
-    offensif, defensif, utilitaire = [], [], []
+    offensif, defensif, utilitaire = [], [], []   # création de liste pour les 3 types car c'est dans le désordre
     for sort in dico_sorts:
         if sort['type']=="Offensif":
             offensif.append(sort)
@@ -19,7 +19,7 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     ajoute_sort_alea(joueur, defensif)
     input("Appuie sur entrée pour continuer...")
     for i in range(3):
-        del utilitaire[ajoute_sort_alea(joueur, utilitaire)]
+        del utilitaire[ajoute_sort_alea(joueur, utilitaire)]   # j'ajoute d'abord le sort puis je réutilise tout de suite l'indice qui est retourné
         input("Appuie sur entrée pour continuer...")
     print("\nTu as terminé ton apprentissage de base à Poudelard !\nVoici les sortilèges que tu maîtrises désormais :\n")
     for sort in joueur["Sortilèges"]:
@@ -27,7 +27,7 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
 
 def ajoute_sort_alea(joueur, tab):
     aleatoire = random.randint(0, len(tab) - 1)
-    joueur["Sortilèges"].append(tab[aleatoire])
+    ajouter_objet(joueur, "Sortilèges", tab[aleatoire])
     print("Tu viens d'apprendre le sortilège : ", tab[aleatoire]['nom'], " (", tab[aleatoire]['type'], ")")
     return aleatoire
 
@@ -42,7 +42,7 @@ def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
     points=0
     while len(questions)<4:
         aleatoire = random.choice(quiz)
-        if aleatoire not in questions:
+        if aleatoire not in questions:   # si la question n'a pas déjà été choisie
             questions.append(aleatoire)
     for i in range(4):
         if demander_texte(questions[i]["question"]) == questions[i]["reponse"]:
@@ -62,24 +62,8 @@ def lancer_chapitre_3(personnage, maisons):
     actualiser_points_maison(maisons, personnage["Maison"], quiz_magie(personnage))
     afficher_maison_gagnante(maisons)
     afficher_personnage(personnage)
-    print("Maison : \n- ", personnage["Maison"])
 
-if __name__ == "__main__":
-    joueur={'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {}, 'Maison':'Gryffondor'}
-    maisons={"Gryffondor": 0,"Serpentard": 0,"Poufsouffle": 0,"Serdaigle": 0}
-    lancer_chapitre_3(joueur, maisons)
-
-# questions=[]
-#     points=0
-#     while len(questions)<4:
-#         aleatoire = random.choice(joueur["Sortilèges"])
-#         if aleatoire not in questions:
-#             questions.append(aleatoire)
-#     for i in range(4):
-#         if demander_texte(str(i-1) + ". Quel sort " + chr(ord(questions[i]["description"][0])+32) + questions[i]["description"][1:-1] + " ?") == questions[i]["nom"]:
-#             print("Bonne réponse ! +25 points pour ta maison.")
-#             actualiser_points_maison({"Gryffondor": 0,"Serpentard": 0,"Poufsouffle": 0,"Serdaigle": 0}, joueur["Maison"], 25)
-#             points+=25
-#         else:
-#             print("Mauvaise réponse. La bonne réponse était : ", questions[i]["nom"])
-#     return points
+# if __name__ == "__main__":
+#     joueur={'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {}, 'Maison':'Gryffondor'}
+#     maisons={"Gryffondor": 0,"Serpentard": 0,"Poufsouffle": 0,"Serdaigle": 0}
+#     lancer_chapitre_3(joueur, maisons)
