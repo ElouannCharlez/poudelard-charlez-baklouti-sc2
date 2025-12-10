@@ -10,17 +10,22 @@ def demander_texte(message):
     print()
     return saisie.strip()
 
-#print(demander_texte("saisie un nom : "))
-#test avec " abcd " renvoie abcd
+# if __name__ == "__main__":
+#     print(demander_texte("saisie un nom : "))
 
 def demander_nombre(message, min_val=None, max_val=None):
-    val=int(input(message))
-    while (min_val!=None and min_val>val) or (max_val!=None and max_val<val):
-        val = int(input(message))
-    return val
+    tab_chiffre = ["0","1","2","3","4","5","6","7","8","9"]
+    redemande = True    # on l'utilise pour savoir si ce qu'à entrer le joueur est conforme et sans renvoyer d'erreur s'il est entré des lettres
+    while redemande or ((min_val!=None and min_val>int(val)) or (max_val!=None and max_val<int(val))):
+        redemande = False
+        val = input(message)
+        for carac in val:
+            if carac not in tab_nb:
+                redemande = True
+    return int(val)
 
-# print(demander_nombre("nb entre 1-9 : ",1,9))
-# entrée(0) : sortie(redemande); entrée(1) : sortie(renvoie 1)
+# if __name__ == "__main__":
+#     print(demander_nombre("nb entre 1-9 : ",1,9))
 
 def demander_choix(message, options):
     print(message)
@@ -29,11 +34,14 @@ def demander_choix(message, options):
     choix=demander_nombre("Votre choix : ",1,len(options))
     return choix-1
 
-#print(demander_choix("Voulez-vous continuer ?",['oui','non']))
-#entrée(78) sortie(redemande); entrée(1) : sortie(oui)
+# if __name__ == "__main__":
+#     print(demander_choix("Voulez-vous continuer ?",['oui','non']))
 
 
 def load_fichier(chemin_fichier):
     with open(chemin_fichier, 'r', encoding='utf-8') as f:
         donnees = json.load(f)
     return donnees
+
+# if __name__ == "__main__":
+#     print(load_fichier("../data/sorts.json"))
