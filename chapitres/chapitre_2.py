@@ -1,5 +1,7 @@
-from utils.input_utils import demander_choix
+from utils.input_utils import *
 from univers.maison import repartition_maison
+from univers.personnage import afficher_personnage
+
 
 def  rencontrer_amis(joueur):
     print("Vous montez à bord du Poudlard Express. Le train démarre lentement en direction du Nord...")
@@ -29,17 +31,19 @@ def  rencontrer_amis(joueur):
         print("Drago fronce les sourcils, vexé. — Tu le regretteras !")
     else:
         joueur['Attributs']['courage'] += 1
-    print("Le train continue sa route. Le château de Poudlard se profile à l’horizon...")
+    print("\nLe train continue sa route. Le château de Poudlard se profile à l’horizon...")
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
-    print("Tes attributs mis à jour : ",joueur['Attributs'])
+    print("\nTes attributs mis à jour : ", joueur['Attributs'], "\n")
 
-# from chapitres.chapitre_1 import *
-# joueur=creer_personnage()
-# rencontrer_amis(joueur)
+
+# if __name__ == "__main__":
+#   from chapitres.chapitre_1 import *
+#   joueur=creer_personnage()
+#   rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
     print("Bienvenue à Poudlard ! Que cette année vous apporte de belles découvertes et beaucoup de magie.")
-    input()
+    input("Appuie sur entrée pour continuer...")
 
 def ceremonie_repartition(joueur):
     print("La cérémonie de répartition commence dans la Grande Salle...")
@@ -66,10 +70,10 @@ def ceremonie_repartition(joueur):
     joueur['Maison']=choix_peau
     print("Le Choixpeau s’exclame :",choix_peau,"!!!")
     print("Tu rejoins les élèves de",choix_peau,"sous les acclamations !")
+    print()
     return choix_peau
-
-#ceremonie_repartition(joueur)
-from utils.input_utils import load_fichier
+# if __name__ == "__main__":
+#   ceremonie_repartition(joueur)
 
 
 def installation_salle_commune(joueur):
@@ -80,5 +84,19 @@ def installation_salle_commune(joueur):
     print(info_communes[maison]['message_installation'])
     print("Les couleurs de votre maison :",end="")
     print(" "+info_communes[maison]['couleurs'][0]+", "+info_communes[maison]['couleurs'][1])
+    print()
 
-#installation_salle_commune(joueur)
+# if __name__ == "__main__":
+#     installation_salle_commune(joueur)
+
+
+def lancer_chapitre_2(personnage):
+    rencontrer_amis(personnage)
+    mot_de_bienvenue()
+    ceremonie_repartition(personnage)
+    installation_salle_commune(personnage)
+    afficher_personnage(personnage)
+    print("\nLe chapitre 1 est maintenant terminé, et une nouvelle étape commence : les cours à Poudlard vont enfin débuter.")
+
+# if __name__ == "__main__":
+#    lancer_chapitre_2(joueur)

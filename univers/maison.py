@@ -56,7 +56,7 @@ def repartition_maison(joueur, questions):
     for i in range (len(questions)):
         choix = demander_choix(questions[i][0], questions[i][1])
         attributs[questions[i][2][choix]] += 3
-    print("Résumé des scores :")
+    print("\nRésumé des scores :")
     for val in attributs:
         print("- ",val," : ",attributs[val]," points")
     maxi = None
