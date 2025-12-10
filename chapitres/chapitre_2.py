@@ -33,8 +33,8 @@ def  rencontrer_amis(joueur):
     print("Tes choix semblent déjà en dire long sur ta personnalité !")
     print("Tes attributs mis à jour : ",joueur['Attributs'])
 
-from chapitres.chapitre_1 import *
-joueur=creer_personnage()
+# from chapitres.chapitre_1 import *
+# joueur=creer_personnage()
 # rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
@@ -73,15 +73,12 @@ from utils.input_utils import load_fichier
 
 
 def installation_salle_commune(joueur):
-    info_communes= load_fichier('')
+    info_communes= load_fichier('../data/maisons.json')
     maison = ceremonie_repartition(joueur)
     print("Vous suivez les préfets à travers les couloirs du château...")
-    print(info_communes['maison']['emoji'],info_communes['maison']['description'])
-    print(info_communes['maison']['message_installation'])
+    print(info_communes[maison]['emoji'],info_communes[maison]['description'])
+    print(info_communes[maison]['message_installation'])
     print("Les couleurs de votre maison :",end="")
-    rses=""
-    for val in info_communes['maison']['couleurs'] :
-        res=res+val
-    print(res[:len(res)-1])
+    print(" "+info_communes[maison]['couleurs'][0]+", "+info_communes[maison]['couleurs'][1])
 
-installation_salle_commune(joueur)
+#installation_salle_commune(joueur)
