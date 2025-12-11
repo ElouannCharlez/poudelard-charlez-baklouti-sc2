@@ -4,7 +4,7 @@ import json
 
 def introduction():
     print("Bienvenue ! Prépare-toi : le premier chapitre de ton voyage vers Poudlard commence maintenant.")
-    input()
+    input("Appuie sur entrée pour continuer...")
 
 # if __name__ == '__main__':
     # introduction()

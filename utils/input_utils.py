@@ -39,7 +39,7 @@ def demander_choix(message, options):
 
 
 def load_fichier(chemin_fichier):
-    with open(chemin_fichier, 'r', encoding='utf-8') as f:
+    with open(chemin_fichier[1:], 'r', encoding='utf-8') as f:   # enlever le slice si on souhaite tester hors du menu
         donnees = json.load(f)
     return donnees
 
