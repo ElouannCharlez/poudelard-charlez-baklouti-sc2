@@ -6,9 +6,13 @@ def actualiser_points_maison(maisons, nom_maison, points):
         maisons[nom_maison] += points
         if points>0:
             print(nom_maison+" a gagné "+str(points) + " point" + 's'*(points>1))
+            print("Son score est passé a " + str((maisons[nom_maison])) + " !")
+        elif points==0 :
+            print(nom_maison +" n'a pas gagné de points ")
+            print("Son score reste a "+str((maisons[nom_maison])))
         else:
             print(nom_maison + " a perdu " + str(-points) + " point" + 's'*(-points>1))
-        print("Son score est passé a " + str((maisons[nom_maison])) + " !")
+            print("Son score est passé a " + str((maisons[nom_maison])) + " !")
     else:
         print(nom_maison+" est introuvable")
 
