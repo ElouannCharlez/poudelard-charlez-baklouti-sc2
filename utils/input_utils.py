@@ -20,7 +20,7 @@ def demander_nombre(message, min_val=None, max_val=None):
         redemande = False
         val = input(message)
         for carac in val:
-            if carac not in tab_nb:
+            if carac not in tab_chiffre:
                 redemande = True
     return int(val)
 
