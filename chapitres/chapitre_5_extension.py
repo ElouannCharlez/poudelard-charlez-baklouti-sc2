@@ -30,7 +30,6 @@ def infiltration(personnage):
             phase2 = True
         elif entree == 1:
             cheveux_restants -= observer()
-            print(cheveux_restants)
         elif entree == 2:
             objectif_restant(objectifs)
         else:
@@ -86,7 +85,7 @@ def objectif_restant(objectifs):
 
 def observer():
     nb = random.randint(1,3)
-    if demander_choix(str(nb) + " personnes apparaissent",["Attendre", "Prendre par surprise"])==1:
+    if demander_choix(str(nb) + " personnes apparaissent",["Attendre", "Attaquer par surprise"])==1:
         if nb == 3:
             print("\nVous passez derrière eux et lancez Hermione et toi le sort Incarcerous pour les ligoter.")
             print("Ron, un peu à la traîne, s'empresse de lancer le sien à son tour.")
