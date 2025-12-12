@@ -19,6 +19,8 @@ def demander_nombre(message, min_val=None, max_val=None):
     while redemande or ((min_val!=None and min_val>int(val)) or (max_val!=None and max_val<int(val))):
         redemande = False
         val = input(message)
+        if val=="":
+            redemande = True
         for carac in val:
             if carac not in tab_chiffre:
                 redemande = True
