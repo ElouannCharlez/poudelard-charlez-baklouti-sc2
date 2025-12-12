@@ -28,6 +28,8 @@ def infiltration(personnage):
                     print("Hermione : « Et dit son nom dans la cabine ! »")
             cabine(pret)
             phase2 = True
+            objectifs=["voler le médaillon"]
+            choix=["sortir", "créer une diversion", "se jetter sur Dolores", "se remémorer les objectifs"]
         elif entree == 1:
             cheveux_restants -= observer()
         elif entree == 2:
@@ -41,20 +43,56 @@ def infiltration(personnage):
             print("Après la finalisation de la potion, vous la buvez et devenez parfaitement méconnaissables\n")
             ajouter_objet(personnage, "Inventaire", "portefeuille")
             choix = choix[:-1]
-        if objectifs!=["entrer dans la cabine"] and cheveux_restants <= 0:
+        if objectifs != ["entrer dans la cabine"] and objectifs != ["voler le médaillon"] and cheveux_restants <= 0:
             choix.append("fouiller les corps")
             objectifs = ["entrer dans la cabine"]
             pret = True
-    print("\nça c'est fait !")
+    print("Reg Cattermole (Ron) : « On a un problème… L’apparence que j’ai prise est recherchée. Ils ont mis son portrait dans tout le hall ! \n»")
+    print("Mafalda Hopkirk (Hermione) : « Alors va-t’en ! Fais semblant d’être pressé, trouve un couloir discret et rejoins-nous plus tard. »\n")
+    print("Albert Runcorn (" + personnage['Nom'] + ") : « On se charge de Dolores Ombrage. Vas-y, file ! »\n")
+    print("Hermione : « Ombrage dirige les interrogatoires aujourd’hui. Elle portera le médaillon sur elle. ")
+    print("Pas besoin d’aller fouiller quoi que ce soit. »\n")
+    print("Vous entrez dans la salle d'audience et apercevez Dolores présider la séance, son médaillon autour du cou")
+    pret_sortir = False
+    pret_attraper = False
+    while objectifs!=["sortir"]:
+        entree = demander_choix("Qu'est ce qu'on fait maintenant ?", choix)
+        if entree==0:
+            sortir(pret_sortir)
+        elif entree==1:
+            creer_diversion()
+            pret_attraper = True
+        elif entree==2:
+            attraper_medaillon(pret_attraper)
+            pret_sortir = True
+            objectifs=["sortir"]
+        else:
+            objectif_restant()
+    return None
+
+def sortir(pret_sortir):
+    pass
+
+def creer_diversion():
+    pass
+
+def attraper_medaillon(pret_attraper):
+    pass
 
 def plan(personnage):
     print("\nDans un Londres magique tombé aux mains de Voldemort, le trio n’a qu’une option :")
-    print("infiltrer le Ministère et récupérer le médaillon d’Ombrage avant que tout ne s’effondre.\n")
+    print("infiltrer le Ministère et récupérer le médaillon de Dolores Ombrage avant que tout ne s’effondre.\n")
     print("Hermione : « On n'a pas dix mille solutions, on entre par polynectar ! ")
     print("Et ensuite, on rejoint le ministère par la cabine téléphonique juste devant. »\n")
     print(str(personnage['Prenom']) + " : « On reste discrets et on se retrouve dans l’atrium dès qu’on l’a. » \n")
     print("Ron : « Et si on se fait repérer ? »\n")
     print(str(personnage['Prenom']) + " : « Alors on transplane tout de suite. Pas de seconde chance... »\n ")
+
+def intro_polynectar():
+    pass
+
+def intro_hall():
+    pass
 
 def cabine(pret):
     print("Vous entrez dans la cabine un par un, donnez votre nom " + "de couverture "*pret + "et êtes chacun téléportés dans le Ministère")
