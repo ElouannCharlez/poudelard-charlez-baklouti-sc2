@@ -10,8 +10,8 @@ def introduction():
     # introduction()
 
 def creer_personnage():
-    nom = input("Entrez le nom de votre personnage : ")
-    prenom = input("Entrez le prénom de votre personnage : ")
+    nom = demander_texte("Entrez le nom de votre personnage : ")
+    prenom = demander_texte("Entrez le prénom de votre personnage : ")
     print()
     print("Choisissez vos attributs : ")
     courage = demander_nombre("Niveau de courage (1-10) : ", 1, 10)
