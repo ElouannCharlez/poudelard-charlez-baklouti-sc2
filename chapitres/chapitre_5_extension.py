@@ -7,7 +7,7 @@ def infiltration(personnage):
     plan(personnage)
     intro_polynectar(personnage)
     objectifs=["récupérer un cheveu de trois personnes différentes"]
-    choix = ["entrer dans la cabine", "observer les arrivants", "se remémorer les objectifs"]
+    choix = ["entrer dans la cabine", "se remémorer les objectifs", "observer les arrivants"]
     phase2 = False
     pret_cabine = False
     cheveux_restants=3
@@ -26,9 +26,9 @@ def infiltration(personnage):
             cabine(pret_cabine)
             phase2 = True
         elif entree == 1:
-            cheveux_restants -= observer()
-        elif entree == 2:
             objectif_restant(objectifs)
+        elif entree == 2:
+            cheveux_restants -= observer()
         else:
             fouiller(personnage, cheveux_restants)
             choix = choix[:-1]
@@ -62,30 +62,6 @@ def infiltration(personnage):
             choix= choix[:-1]
     return None
 
-def sortir(pret_sortir):
-    if not pret_sortir:
-        print("Hermione : « C'est pas le moment de se défiler ! »\n")
-    else:
-        print("Vous rejoignez Ron dans l’entrée et transplanez immédiatement.")
-        print("Vous réapparaissez dans un sous-bois sombre, personne dans les environs.")
-        print("Le médaillon en votre possession, vous le détruisez en combinant vos pouvoirs, rendant alors Voldemort plus faible.")
-
-def creer_diversion():
-    print("Hermione (s'exclame) : « Présidente Ombrage ! Ce dossier est remplit d’incohérences majeures !")
-    print("Il n'y a qu'une possibilité : un espion s'est infiltré chez nous ! »\n")
-    print("L'auditorium de lève troublé et se précipite vers Ombrage pour essayer d'avoir des réponses.\n")
-
-def attraper_medaillon(personnage, pret_attraper):
-    if not pret_attraper:
-        print(str(personnage['Prenom']) + " : « Tout le monde regarde Ombrage, aucune chance de lui prendre son médaillon sans être intercepté »\n")
-    else:
-        print("Vous réagissez dans le brouhaha, vous extirpez de la foule et vous jetez sur elle.")
-        print("Une fois devant elle, vous lancez un Expelliarmus discret, recouvert par le son de la foule et récupérez son médaillon")
-        print("Ombrage comprend qu'elle est visée par une attaque et se débat violemment")
-        print("Vous êtes déjà éloignés qu'Ombrage parvient enfin à s'écrier :\n")
-        print("Ombrage : « Mon médaillon ! »\n")
-    return None
-
 def plan(personnage):
     print("\nDans un Londres magique tombé aux mains de Voldemort, le trio n’a qu’une option :")
     print("infiltrer le Ministère et récupérer le médaillon de Dolores Ombrage avant que tout ne s’effondre.\n")
@@ -101,13 +77,12 @@ def intro_polynectar(personnage):
         cabine(False)
     explication(personnage)
 
-def intro_hall(personnage):
-    print("Reg Cattermole (Ron) : « On a un problème… L’apparence que j’ai prise est recherchée. Ils ont mis son portrait dans tout le hall ! »\n")
-    print("Mafalda Hopkirk (Hermione) : « Alors va-t’en ! Fais semblant d’être pressé, trouve un couloir discret et rejoins-nous plus tard. »\n")
-    print("Albert Runcorn (" + personnage['Nom'] + ") : « On se charge de Dolores Ombrage. Vas-y, file ! »\n")
-    print("Hermione : « Ombrage dirige les interrogatoires aujourd’hui. Elle portera le médaillon sur elle. ")
-    print("Pas besoin d’aller fouiller quoi que ce soit. »\n")
-    print("Vous entrez dans la salle d'audience et apercevez Dolores présider la séance, son médaillon autour du cou\n")
+def explication(personnage):
+    print('\n'+ str(personnage['Prenom']), " : « Euhh... Une dernière chose... C'est quoi déjà du polynectar ? »\n")
+    print("Hermione : « Tu suits vraiment rien en cours ! C'est une potion pour prendre l'apparence de quelqu'un d'autre.")
+    print("Pour la concocter, il ne nous reste plus qu'un ingrédient : un cheveu des personnes dont l'on souhaite prendre l'apparence.")
+    print("Pour ça, il nous faut au moins trois cibles »\n")
+    print("Ron (chuchote à " + str(personnage['Prenom']) + ") : « J'aurai bien demandé mais j'ai pas osé... »\n")
 
 def cabine(pret):
     print("Vous entrez dans la cabine un par un, donnez votre nom " + "de couverture "*pret + "et êtes chacun téléportés dans le Ministère")
@@ -118,12 +93,6 @@ def cabine(pret):
     print("Hermione (chuchote) : « Personne n'a l'air de nous avoir reconnu. On passe à la suite. »")
     input("Appuie sur entrée pour continuer...")
     print()
-def explication(personnage):
-    print('\n'+ str(personnage['Prenom']), " : « Euhh... Une dernière chose... C'est quoi déjà du polynectar ? »\n")
-    print("Hermione : « Tu suits vraiment rien en cours ! C'est une potion pour prendre l'apparence de quelqu'un d'autre.")
-    print("Pour la concocter, il ne nous reste plus qu'un ingrédient : un cheveu des personnes dont l'on souhaite prendre l'apparence.")
-    print("Pour ça, il nous faut au moins trois cibles »\n")
-    print("Ron (chuchote à " + str(personnage['Prenom']) + ") : « J'aurai bien demandé mais j'ai pas osé... »\n")
 
 def objectif_restant(objectifs):
     if objectifs==[]:
@@ -134,10 +103,6 @@ def objectif_restant(objectifs):
             print("- "+ obj)
     print()
     return None
-
-# if __name__ == '__main__':
-#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {}, 'Maison': 'Gryffondor'}
-#     plan(perso)
 
 def observer():
     nb = random.randint(1,3)
@@ -176,6 +141,38 @@ def fouiller(personnage, cheveux_restants):
     print("Vous récupérez les portefeuilles des victimes, vous connaissez maintenant leurs noms et êtes prêts à les dire dans la cabine téléphonique.")
     print("Après la finalisation de la potion, vous la buvez et devenez parfaitement méconnaissables\n")
     ajouter_objet(personnage, "Inventaire", "portefeuille")
+
+def intro_hall(personnage):
+    print("Reg Cattermole (Ron) : « On a un problème… L’apparence que j’ai prise est recherchée. Ils ont mis son portrait dans tout le hall ! »\n")
+    print("Mafalda Hopkirk (Hermione) : « Alors va-t’en ! Fais semblant d’être pressé, trouve un couloir discret et rejoins-nous plus tard. »\n")
+    print("Albert Runcorn (" + personnage['Nom'] + ") : « On se charge de Dolores Ombrage. Vas-y, file ! »\n")
+    print("Hermione : « Ombrage dirige les interrogatoires aujourd’hui. Elle portera le médaillon sur elle. ")
+    print("Pas besoin d’aller fouiller quoi que ce soit. »\n")
+    print("Vous entrez dans la salle d'audience et apercevez Dolores présider la séance, son médaillon autour du cou\n")
+
+def sortir(pret_sortir):
+    if not pret_sortir:
+        print("Hermione : « C'est pas le moment de se défiler ! »\n")
+    else:
+        print("Vous rejoignez Ron dans l’entrée et transplanez immédiatement.")
+        print("Vous réapparaissez dans un sous-bois sombre, personne dans les environs.")
+        print("Le médaillon en votre possession, vous le détruisez en combinant vos pouvoirs, rendant alors Voldemort plus faible.")
+
+def creer_diversion():
+    print("Hermione (s'exclame) : « Présidente Ombrage ! Ce dossier est remplit d’incohérences majeures !")
+    print("Il n'y a qu'une possibilité : un espion s'est infiltré chez nous ! »\n")
+    print("L'auditorium de lève troublé et se précipite vers Ombrage pour essayer d'avoir des réponses.\n")
+
+def attraper_medaillon(personnage, pret_attraper):
+    if not pret_attraper:
+        print(str(personnage['Prenom']) + " : « Tout le monde regarde Ombrage, aucune chance de lui prendre son médaillon sans être intercepté »\n")
+    else:
+        print("Vous réagissez dans le brouhaha, vous extirpez de la foule et vous jetez sur elle.")
+        print("Une fois devant elle, vous lancez un Expelliarmus discret, recouvert par le son de la foule et récupérez son médaillon")
+        print("Ombrage comprend qu'elle est visée par une attaque et se débat violemment")
+        print("Vous êtes déjà éloignés qu'Ombrage parvient enfin à s'écrier :\n")
+        print("Ombrage : « Mon médaillon ! »\n")
+    return None
 
 def lancer_chapitre5(personnage):
     infiltration(personnage)
