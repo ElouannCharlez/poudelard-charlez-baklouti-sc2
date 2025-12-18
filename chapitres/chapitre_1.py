@@ -1,6 +1,5 @@
 from utils.input_utils import *
 from univers.personnage import *
-import json
 
 def introduction():
     print("Bienvenue ! Prépare-toi : le premier chapitre de ton voyage vers Poudlard commence maintenant.")
