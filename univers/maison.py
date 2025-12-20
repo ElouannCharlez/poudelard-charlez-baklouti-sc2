@@ -79,7 +79,7 @@ def repartition_maison(joueur, questions):
         if attributs[x] == maxi:
             liste_maisons.append(x)
     if len(liste_maisons) > 1:
-        return liste_maisons[demander_choix("Quel maison voulez-vous choisir ?", liste_maisons)]
+        return liste_maisons[demander_choix("Quel maison voulez-vous choisir ?", liste_maisons)] # renvoie la maison choisie
     return liste_maisons[0]
 
 # if __name__ == "__main__":
