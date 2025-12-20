@@ -37,7 +37,7 @@ def  rencontrer_amis(joueur):
 
 
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8,'intelligence' : 10,'loyauté' : 8,'ambition' : 7}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
 #   rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
@@ -72,7 +72,7 @@ def ceremonie_repartition(joueur):
     print()
     return choix_peau
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8,'intelligence' : 10,'loyauté' : 8,'ambition' : 7}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
 #   ceremonie_repartition(joueur)
 
 
@@ -87,7 +87,7 @@ def installation_salle_commune(joueur):
     print()
 
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8,'intelligence' : 10,'loyauté' : 8,'ambition' : 7}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
 #   installation_salle_commune(joueur)
 
 
