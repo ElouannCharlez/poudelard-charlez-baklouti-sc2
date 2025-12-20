@@ -66,10 +66,10 @@ def acheter_fournitures(personnage):
     while len(objets_obli_achete) != 3: # tant qu'on a pas acheté tout les objets
        print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
        print("Objets obligatoires restant à acheter : ", end="")
-       restants = len(objets_obli_achete) - len(objets_obli_achete) # variable qui indique le nombre d'objets obligatoires qu'il reste à afficher
+       restants = len(objets_obli) - len(objets_obli_achete) # variable qui indique le nombre d'objets obligatoires qu'il reste à afficher
        for i in range(len(objets_obli)):   # affiche les objets à acheter impérativement qui reste
            if objets_obli[i][0] not in objets_obli_achete:
-               print(objets_obli[i][0] + ", "*(restants!=1)), end="") # !=1 et pas 0 car si on a 3 objets obligatoires et qu'on en a acheté déjà 2, alors 3-2=1 et pas 0
+               print(objets_obli[i][0] + ", "*(restants!=1), end="") # !=1 et pas 0 car si on a 3 objets obligatoires et qu'on en a acheté déjà 2, alors 3-2=1 et pas 0
                restants -= 1 # comme on a affiché un objet, on met à jour
        numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
        if inventaire[str(numero)] in personnage["Inventaire"]:
