@@ -18,13 +18,13 @@ def creer_personnage():
     loyaute = demander_nombre("Niveau de loyauté (1-10) : ", 1, 10)
     ambition = demander_nombre("Niveau d'ambition (1-10) : ", 1, 10)
     print()
-    attributs = {"courage":courage,"intelligence":intelligence,"loyauté":loyaute,"ambition":ambition}
-    joueur = initialiser_personnage(nom,prenom,attributs)
+    attributs = {"courage": courage, "intelligence": intelligence, "loyauté": loyaute, "ambition": ambition}
+    joueur = initialiser_personnage(nom, prenom, attributs)
     afficher_personnage(joueur)
     return joueur
 
 # if __name__ == '__main__':
-    # creer_personnage()
+    # print(creer_personnage())
 
 def recevoir_lettre():
     print("\nUne chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard...")
@@ -56,22 +56,21 @@ def rencontrer_hagrid(personnage):
 
 
 def acheter_fournitures(personnage):
-    inventaire=load_fichier('../data/inventaire.json')
-    objets_obli = [["Baguette magique", 35], ["Robe de sorcier", 20], ["Manuel de potions", 25]]
-    objets_obli_achete = []
+    inventaire = load_fichier('../data/inventaire.json')
+    objets_obli = [["Baguette magique", 35], ["Robe de sorcier", 20], ["Manuel de potions", 25]] # liste objets à acheter obligatoirement
+    objets_obli_achete = [] # liste objets à acheter obligatoirement qui ont été acheté
     print("\nBienvenue sur le Chemin de Traverse ! \n")
     print("Catalogue des objets disponibles : \n")
-    for cle in inventaire:
-        print(cle + ". " + inventaire[cle][0] + " - " + str(inventaire[cle][1]) + " galions \n")
-    while len(objets_obli_achete) != 3:
+    for article in inventaire:
+        print(article + ". " + inventaire[article][0] + " - " + str(inventaire[article][1]) + " galions \n")
+    while len(objets_obli_achete) != 3: # tant qu'on a pas acheté tout les objets
        print("Vous avez " + str(personnage["Argent"]) + " galions. \n")
        print("Objets obligatoires restant à acheter : ", end="")
-       vu = 0    # variable qui sert dans la ligne 73 pour éviter d'écrire une ',' en plus à la fin
+       restants = len(objets_obli_achete) - len(objets_obli_achete) # variable qui indique le nombre d'objets obligatoires qu'il reste à afficher
        for i in range(len(objets_obli)):   # affiche les objets à acheter impérativement qui reste
            if objets_obli[i][0] not in objets_obli_achete:
-               print(objets_obli[i][0] + ", "*(i-vu != 2-len(objets_obli_achete)), end="")
-           else:
-               vu+=1
+               print(objets_obli[i][0] + ", "*(restants!=1)), end="") # !=1 et pas 0 car si on a 3 objets obligatoires et qu'on en a acheté déjà 2, alors 3-2=1 et pas 0
+               restants -= 1 # comme on a affiché un objet, on met à jour
        numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
        if inventaire[str(numero)] in personnage["Inventaire"]:
            print("\nObjet déjà acheté ! \n")
@@ -85,11 +84,11 @@ def acheter_fournitures(personnage):
                ajouter_objet(personnage, "Inventaire", inventaire[str(numero)][0])
                modifier_argent(personnage, -inventaire[str(numero)][1])
                print("\nVous avez acheté : " + inventaire[str(numero)][0] + " (-" + str(inventaire[str(numero)][1]) + " galions).\n")
-               somme=0   # test s'il reste assez d'argent pour pouvoir acheter tout ce qui est nécessaire
+               somme = 0   # test s'il reste assez d'argent pour pouvoir acheter tout ce qui est nécessaire
                for item in objets_obli:
                    if item[0] not in objets_obli_achete:
                        somme += item[1]
-               if personnage["Argent"] - somme < 5: # 5 et pes 0 car il faut aussi un animal et le moins chère est le crapaud(5)
+               if personnage["Argent"] - somme < 5: # 5 et pas 0 car il faut aussi un animal et le moins chère est le crapaud(5)
                    print("À ce train là, même avec 1000 galions vous n'auriez pas tout acheté... Fin")
                    exit()
     print("Tous les objets obligatoires ont été achetés !\n")
