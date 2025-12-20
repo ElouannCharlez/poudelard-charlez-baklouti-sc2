@@ -6,7 +6,7 @@ import random
 def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     print("\nTu commences tes cours de magie à Poudlard...")
     dico_sorts=load_fichier(chemin_fichier)
-    offensif, defensif, utilitaire = [], [], []   # création de liste pour les 3 types car c'est dans le désordre
+    offensif, defensif, utilitaire = [], [], []   # création de liste pour les 3 types de sorts car ils sont dans le désordre
     for sort in dico_sorts:
         if sort['type']=="Offensif":
             offensif.append(sort)
@@ -15,12 +15,9 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
         else:
             utilitaire.append(sort)
     ajoute_sort_alea(joueur, offensif)
-    input("Appuie sur entrée pour continuer...")
     ajoute_sort_alea(joueur, defensif)
-    input("Appuie sur entrée pour continuer...")
     for i in range(3):
         del utilitaire[ajoute_sort_alea(joueur, utilitaire)]   # j'ajoute d'abord le sort puis je réutilise tout de suite l'indice qui est retourné
-        input("Appuie sur entrée pour continuer...")
     print("\nTu as terminé ton apprentissage de base à Poudelard !\nVoici les sortilèges que tu maîtrises désormais :\n")
     for sort in joueur["Sortilèges"]:
         print("- ", sort['nom'], " (", sort['type'], ") : ", sort['description'])
@@ -29,6 +26,7 @@ def ajoute_sort_alea(joueur, tab):
     aleatoire = random.randint(0, len(tab) - 1)
     ajouter_objet(joueur, "Sortilèges", tab[aleatoire])
     print("Tu viens d'apprendre le sortilège : ", tab[aleatoire]['nom'], " (", tab[aleatoire]['type'], ")")
+    input("Appuie sur entrée pour continuer...")
     return aleatoire
 
 # if __name__ == "__main__":
