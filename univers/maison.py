@@ -101,5 +101,5 @@ def repartition_maison(joueur, questions):
 #                 ["Gryffondor", "Serpentard", "Poufsouffle", "Serdaigle"]
 #             )
 #         ]
-#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {}}
+#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
 #     print(repartition_maison(perso, questions))
