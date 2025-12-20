@@ -1,7 +1,14 @@
 import random
+from utils.input_utils import load_fichier
+
+
 
 def creer_equipe(maison, equipe_data, est_joueur=False, joueur=None):
-    pass
+    membres = load_fichier('../data/equipes_quidditch.json')
+    equipe = {'nom':masion,'score': 0,'a_marque': 0,'a_stoppe': 0,'attrape_vifdor': False,}
+    joueur = membres[maison][joueurs]
+    if est_joueur==True:
+        joueur =
 
 def tentative_marque(equipe_attaque, equipe_defense, joueur_est_joueur=False):
     pass
