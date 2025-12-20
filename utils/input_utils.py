@@ -2,7 +2,7 @@ import json
 
 
 def demander_texte(message):
-    print(message)
+    print(message) # Le message n'est pas dans le input pour faire un retour à la ligne
     saisie = input()
     while saisie.strip() == "":
         print(message)
@@ -15,13 +15,13 @@ def demander_texte(message):
 
 def demander_nombre(message, min_val=None, max_val=None):
     tab_chiffre = ["0","1","2","3","4","5","6","7","8","9"]
-    redemande = True    # on l'utilise pour savoir si ce qu'à entrer le joueur est conforme et sans renvoyer d'erreur s'il est entré des lettres
+    redemande = True    # sert à empêcher les chaines vides ou les chaines qui ne sont pas totalement composées de chiffres
     while redemande or ((min_val!=None and min_val>int(val)) or (max_val!=None and max_val<int(val))):
         redemande = False
         val = input(message)
-        if val=="":
+        if val=="": # interdit les chaines vide
             redemande = True
-        for carac in val:
+        for carac in val: # s'assure que la chaine est composée seulement de chiffre
             if carac not in tab_chiffre:
                 redemande = True
     return int(val)
@@ -38,7 +38,6 @@ def demander_choix(message, options):
 
 # if __name__ == "__main__":
 #     print(demander_choix("Voulez-vous continuer ?",['oui','non']))
-
 
 def load_fichier(chemin_fichier):
     with open(chemin_fichier[1:], 'r', encoding='utf-8') as f:   # enlever le slice si on souhaite tester hors du menu
