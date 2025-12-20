@@ -51,7 +51,7 @@ def rencontrer_hagrid(personnage):
     return None
 
 # if __name__ == '__main__':
-    # perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage : 8'}}
+    # perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {}}
     # rencontrer_hagrid(perso)
 
 
