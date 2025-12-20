@@ -8,15 +8,15 @@ def  rencontrer_amis(joueur):
     print("Un garçon roux entre dans votre compartiment, l’air amical.")
     print("— Salut ! Moi c’est Ron Weasley. Tu veux bien qu’on s’assoie ensemble ?")
     choix_1 = demander_choix("Que répondez-vous ?",['Bien sûr, assieds-toi !','Désolé, je préfère voyager seul.'])
-    if choix_1==0:
-        joueur['Attributs']['loyauté']+=1
+    if choix_1 == 0:
+        joueur['Attributs']['loyauté'] += 1
         print("Ron sourit : — Génial ! Tu verras, Poudlard, c’est incroyable !")
     else:
         joueur['Attributs']['ambition'] += 1
     print("Une fille entre ensuite, portant déjà une pile de livres.")
     print("— Bonjour, je m’appelle Hermione Granger. Vous avez déjà lu ‘Histoire de la Magie’ ?")
     choix_2 = demander_choix("Que répondez-vous ?",['Oui, j’adore apprendre de nouvelles choses !','Euh… non, je préfère les aventures aux bouquins.'])
-    if choix_2==0:
+    if choix_2 == 0:
         joueur['Attributs']['intelligence'] += 1
     else:
         joueur['Attributs']['courage'] += 1
@@ -24,9 +24,9 @@ def  rencontrer_amis(joueur):
     print("Puis un garçon blond entre avec un air arrogant.")
     print("— Je suis Drago Malefoy. Mieux vaut bien choisir ses amis dès le départ, tu ne crois pas ?")
     choix_3 = demander_choix("Comment réagissez-vous ?",['Je lui serre la main poliment.','Je l’ignore complètement.','Je lui réponds avec arrogance.'])
-    if choix_3==0:
+    if choix_3 == 0:
         joueur['Attributs']['ambition'] += 1
-    elif choix_3==1:
+    elif choix_3 == 1:
         joueur['Attributs']['loyauté'] += 1
         print("Drago fronce les sourcils, vexé. — Tu le regretteras !")
     else:
@@ -37,8 +37,7 @@ def  rencontrer_amis(joueur):
 
 
 # if __name__ == "__main__":
-#   from chapitres.chapitre_1 import *
-#   joueur=creer_personnage()
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8}}
 #   rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
@@ -73,6 +72,7 @@ def ceremonie_repartition(joueur):
     print()
     return choix_peau
 # if __name__ == "__main__":
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8}}
 #   ceremonie_repartition(joueur)
 
 
@@ -87,7 +87,8 @@ def installation_salle_commune(joueur):
     print()
 
 # if __name__ == "__main__":
-#     installation_salle_commune(joueur)
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage' : 8}}
+#   installation_salle_commune(joueur)
 
 
 def lancer_chapitre_2(personnage):
