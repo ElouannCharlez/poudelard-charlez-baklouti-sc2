@@ -4,7 +4,7 @@ def initialiser_personnage(nom, prenom, attributs):
 # if __name__ == '__main__':
 #     print(initialiser_personnage("Baklouti","Youssef",{}))
 
-def afficher_personnage(joueur) :
+def afficher_personnage(joueur):
     print("Profil du personnage : ")
     print("Nom : ", joueur["Nom"])
     print("Prenom : ", joueur["Prenom"])
@@ -21,16 +21,16 @@ def afficher_personnage(joueur) :
     print("Maison : ", joueur["Maison"])
     return None
 
-if __name__ == "__main__":
-    perso=initialiser_personnage("Baklouti","Youssef",{})
-    afficher_personnage(perso)
+# if __name__ == "__main__":
+#     perso = initialiser_personnage("Baklouti","Youssef",{})
+#     afficher_personnage(perso)
 
 def modifier_argent(joueur, montant):
     joueur["Argent"] += montant
     return None
 
 # if __name__ == "__main__":
-#     perso=initialiser_personnage("Baklouti","Youssef",{})
+#     perso = initialiser_personnage("Baklouti","Youssef",{})
 #     modifier_argent(perso,-10)
 #     afficher_personnage(perso)
 
