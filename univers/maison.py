@@ -29,7 +29,7 @@ def actualiser_points_maison(maisons, nom_maison, points):
 def afficher_maison_gagnante(maisons):
     maxi=None
     for val in maisons:
-        if maxi == None: # si le maximum est vide on lui attribue comme maximum la première valeur qu'on rencontre
+        if maxi == None: # si le maximum est vide on lui attribue comme maximum la première valeur que l'on rencontre
             maxi = maisons[val]
         elif maisons[val] > maxi:
             maxi = maisons[val]

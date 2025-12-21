@@ -66,9 +66,9 @@ def ceremonie_repartition(joueur):
         )
     ]
     choix_peau = repartition_maison(joueur, questions)
-    joueur['Maison']=choix_peau
-    print("Le Choixpeau s’exclame :",choix_peau,"!!!")
-    print("Tu rejoins les élèves de",choix_peau,"sous les acclamations !")
+    joueur['Maison'] = choix_peau
+    print("Le Choixpeau s’exclame :", choix_peau, "!!!")
+    print("Tu rejoins les élèves de", choix_peau, "sous les acclamations !")
     print()
     return choix_peau
 # if __name__ == "__main__":
@@ -78,7 +78,7 @@ def ceremonie_repartition(joueur):
 
 def installation_salle_commune(joueur):
     info_communes= load_fichier('../data/maisons.json')
-    maison = ceremonie_repartition(joueur)
+    maison = joueur['Maison']
     print("Vous suivez les préfets à travers les couloirs du château...")
     print(info_communes[maison]['emoji'],info_communes[maison]['description'])
     print(info_communes[maison]['message_installation'])
@@ -97,7 +97,7 @@ def lancer_chapitre_2(personnage):
     ceremonie_repartition(personnage)
     installation_salle_commune(personnage)
     afficher_personnage(personnage)
-    print("\nLe chapitre 1 est maintenant terminé, et une nouvelle étape commence : les cours à Poudlard vont enfin débuter.")
+    print("\nLe chapitre 2 est maintenant terminé, et une nouvelle étape commence : les cours à Poudlard vont enfin débuter.")
 
 # if __name__ == "__main__":
 #    lancer_chapitre_2(joueur)

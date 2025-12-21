@@ -19,7 +19,7 @@ def demander_nombre(message, min_val=None, max_val=None):
     while redemande or ((min_val!=None and min_val>int(val)) or (max_val!=None and max_val<int(val))):
         redemande = False
         val = input(message)
-        if val=="": # interdit les chaines vide
+        if val == "": # interdit les chaines vide
             redemande = True
         for carac in val: # s'assure que la chaine est composée seulement de chiffre
             if carac not in tab_chiffre:

@@ -119,7 +119,7 @@ def lancer_chapitre1():
     recevoir_lettre()
     rencontrer_hagrid(perso)
     acheter_fournitures(perso)
-    print("\nFin du chapitre 1 ! Votre aventure commence à Poudelard...\n")
+    print("\nFin du chapitre 1 ! Votre aventure commence à Poudelard... \n")
     return perso
 
 # if __name__== '__main__':

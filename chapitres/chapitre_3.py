@@ -18,6 +18,7 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
     ajoute_sort_alea(joueur, defensif)
     for i in range(3):
         del utilitaire[ajoute_sort_alea(joueur, utilitaire)]   # j'ajoute d'abord le sort puis je réutilise tout de suite l'indice qui est retourné pour ne pas lui faire apprendre plusieurs fois le même sort
+        # je le supprime pour ne pas le faire apprendre plusieurs fois
     print("\nTu as terminé ton apprentissage de base à Poudelard !\nVoici les sortilèges que tu maîtrises désormais :\n")
     for sort in joueur["Sortilèges"]:
         print("- ", sort['nom'], " (", sort['type'], ") : ", sort['description'])
@@ -26,7 +27,7 @@ def apprendre_sorts(joueur, chemin_fichier="../data/sorts.json"):
 #     joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
 #     apprendre_sorts(joueur)
 
-def ajoute_sort_alea(joueur, tab):
+def ajoute_sort_alea(joueur, tab): # cette fonction sert à ne pas répéter cette partie de code, elle prend un sort aléatoirement dans le tableau en paramètre pour le faire apprendre au joueur
     aleatoire = random.randint(0, len(tab) - 1)
     ajouter_objet(joueur, "Sortilèges", tab[aleatoire])
     print("Tu viens d'apprendre le sortilège : ", tab[aleatoire]['nom'], " (", tab[aleatoire]['type'], ")")
@@ -36,7 +37,7 @@ def ajoute_sort_alea(joueur, tab):
 def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
     print("\nBienvenue au quiz de magie de Poudlard !\nRéponds correctement aux 4 questions pour faire gagner des points à ta maison.\n")
     quiz = load_fichier(chemin_fichier)
-    questions = []
+    questions = [] # on utilise cette variable pour éviter de choisir la même question
     points = 0
     while len(questions)<4:
         aleatoire = random.choice(quiz)
@@ -60,6 +61,7 @@ def lancer_chapitre_3(personnage, maisons):
     apprendre_sorts(personnage)
     actualiser_points_maison(maisons, personnage["Maison"], quiz_magie(personnage))
     afficher_maison_gagnante(maisons)
+    print()
     afficher_personnage(personnage)
 
 # if __name__ == "__main__":

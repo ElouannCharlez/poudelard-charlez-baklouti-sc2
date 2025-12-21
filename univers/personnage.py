@@ -22,7 +22,7 @@ def afficher_personnage(joueur):
     return None
 
 # if __name__ == "__main__":
-#     perso = initialiser_personnage("Baklouti","Youssef",{})
+#     perso = initialiser_personnage("Baklouti", "Youssef", {})
 #     afficher_personnage(perso)
 
 def modifier_argent(joueur, montant):
@@ -30,7 +30,7 @@ def modifier_argent(joueur, montant):
     return None
 
 # if __name__ == "__main__":
-#     perso = initialiser_personnage("Baklouti","Youssef",{})
+#     perso = initialiser_personnage("Baklouti", "Youssef", {})
 #     modifier_argent(perso,-10)
 #     afficher_personnage(perso)
 
@@ -39,6 +39,6 @@ def ajouter_objet(joueur, cle, objet):
     return None
 
 # if __name__ == "__main__":
-#     perso=initialiser_personnage("Baklouti","Youssef",{})
+#     perso=initialiser_personnage("Baklouti", "Youssef", {})
 #     ajouter_objet(perso, "Inventaire", "baguette magique")
 #     afficher_personnage(perso)
