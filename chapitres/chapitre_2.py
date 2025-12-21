@@ -37,7 +37,7 @@ def  rencontrer_amis(joueur):
 
 
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
 #   rencontrer_amis(joueur)
 
 def mot_de_bienvenue():
@@ -72,7 +72,7 @@ def ceremonie_repartition(joueur):
     print()
     return choix_peau
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
 #   ceremonie_repartition(joueur)
 
 
@@ -87,17 +87,18 @@ def installation_salle_commune(joueur):
     print()
 
 # if __name__ == "__main__":
-#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
+#   joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
 #   installation_salle_commune(joueur)
 
 
 def lancer_chapitre_2(personnage):
     rencontrer_amis(personnage)
     mot_de_bienvenue()
-    ceremonie_repartition(personnage)
+    personnage['Maison'] = ceremonie_repartition(personnage)
     installation_salle_commune(personnage)
     afficher_personnage(personnage)
     print("\nLe chapitre 2 est maintenant terminé, et une nouvelle étape commence : les cours à Poudlard vont enfin débuter.")
 
-# if __name__ == "__main__":
-#    lancer_chapitre_2(joueur)
+if __name__ == "__main__":
+    joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
+    lancer_chapitre_2(joueur)

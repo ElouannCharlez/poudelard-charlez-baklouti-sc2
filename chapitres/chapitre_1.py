@@ -51,7 +51,7 @@ def rencontrer_hagrid(personnage):
     return None
 
 # if __name__ == '__main__':
-    # perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
+    # perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
     # rencontrer_hagrid(perso)
 
 
@@ -110,7 +110,7 @@ def acheter_fournitures(personnage):
     afficher_personnage(personnage)
 
 # if __name__ == '__main__':
-#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}}
+#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
 #     acheter_fournitures(perso)
 
 def lancer_chapitre1():

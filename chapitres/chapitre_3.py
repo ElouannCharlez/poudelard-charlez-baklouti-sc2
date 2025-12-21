@@ -53,7 +53,7 @@ def quiz_magie(joueur, chemin_fichier="../data/quiz_magie.json"):
     return points
 
 # if __name__ == "__main__":
-#     joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition: 3}, 'Maison':'Gryffondor'}
+#     joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}, 'Maison':'Gryffondor'}
 #     apprendre_sorts(joueur)
 #     print(quiz_magie(joueur))
 
