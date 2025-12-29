@@ -2,7 +2,7 @@ from utils.input_utils import demander_choix,demander_nombre
 from chapitres.chapitre_1 import lancer_chapitre1
 from chapitres.chapitre_2 import lancer_chapitre_2
 from chapitres.chapitre_3 import lancer_chapitre_3
-#from chapitres.chapitre_4 import lancer_chapitre4_quidditch
+from chapitres.chapitre_4 import lancer_chapitre4_quidditch
 
 def afficher_menu_principal():
     print("1. Lancer le Chapitre 1 – L’arrivée dans le monde magique.")
@@ -27,7 +27,7 @@ def lancer_choix_menu():
         perso = lancer_chapitre1()
         lancer_chapitre_2(perso)
         lancer_chapitre_3(perso, maisons)
-        #lancer_chapitre4_quidditch(perso, maisons)
+        lancer_chapitre4_quidditch(perso, maisons)
     elif choix == 2:
         print("Poudlard te dit au revoir, mais sûrement pas adieu ! Bonne route, pleine de magie et de belles aventures.")
         exit()
