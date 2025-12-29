@@ -78,7 +78,8 @@ def match_quidditch(joueur, maisons):
     print("Tu joues pour " + maison + " en tant qu’Attrapeur")
     print()
     msg_vifdor = False
-    for i in range(20):
+    i=0
+    while i<20 and msg_vifdor==False:
         print("━━━ Tour" +str(i+1)+" ━━━")
         tentative_marque(equipe, equipe_adverse, i%2==0)
         afficher_score(equipe, equipe_adverse)
@@ -89,6 +90,7 @@ def match_quidditch(joueur, maisons):
         else:
             print("Appuyez sur Entrée pour continuer...")
             input()
+        i += 1
     if msg_vifdor == True:
         print("Le Vif d’Or a été attrapé par " + equipe_gagnante['nom'] + " ! (+150 points)")
         equipe_gagnante['score'] += 150
