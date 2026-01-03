@@ -81,7 +81,7 @@ def match_quidditch(joueur, maisons):
     while i<20 and msg_vifdor==False:
         print("━━━ Tour" +str(i+1)+" ━━━")
         tentative_marque(equipe, equipe_adverse, i%2==0)
-        tentative_marque(equipe_adverse, equipe_adverse)
+        tentative_marque(equipe_adverse, equipe)
         afficher_score(equipe, equipe_adverse)
         vifdor_existe = apparition_vifdor()
         if vifdor_existe == True:
