@@ -27,8 +27,6 @@ def lancer_choix_menu():
         perso = lancer_chapitre1()
         lancer_chapitre_2(perso)
         lancer_chapitre_3(perso, maisons)
-        perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [],
-                  'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}, 'Maison': "Gryffondor"}
         lancer_chapitre4_quidditch(perso, maisons)
     elif choix == 2:
         print("Poudlard te dit au revoir, mais sûrement pas adieu ! Bonne route, pleine de magie et de belles aventures.")
