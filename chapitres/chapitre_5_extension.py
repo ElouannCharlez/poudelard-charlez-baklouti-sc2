@@ -209,21 +209,17 @@ def attraper_medaillon(personnage, pret_attraper):
 # Etape1 : le dragon ne se réveille pas
 # Etape2 : rappeler les sorts, les objets et tt
 # Etape3 : Débuter les 11 tours
-# Etape3 : A chaque phase : 1 évènement aléatoire :
+# Etape4 : A chaque phase : 1 évènement aléatoire :
 
 #alterner entre les personnages qui sont devant : pas les mêmes sorts/ objets
 
 # 1- Les gobelins vous rattrapent ( gardes/ accompagnateur/ renforts ) --> combat léger
-# 2- Un piège se déclenche ( 3 pièges différents )
-# 3- Le dragon se déchaîne ( 2 attaques différentes ) coulée de lave = on peut placer des pièges mais forcément ralenti
+# 2- Un piège se déclenche
+# 3- Le dragon se déchaîne ( 2 attaques différentes )
 # 4- Choisir entre plusieurs chemins
 
-# Ca ne fait pas perdre, juste ralentir
-# 4- Les portes se ferment dérrière
+# Etape5 : Si >8 alors win et donc narration fin
 
-# Etape3 : Si >6 alors win et dpnc narrationf fin
-# Etape4 :
-# Etape5 :
 
 
 def gringotts(personnage, hermione, ron):
@@ -261,7 +257,7 @@ def aide(personnage, hermione, ron):
     print("Avant de vous laissez, Hagrid vous propose de vous acheter des objets pouvant vous être utiles pour la suite")
     input("Vous entrez maintenant dans L’Oeil du Gobelin...")
     print("\nHagrid : « Choisissez un objet chacun ! C'est moi qui me charge du reste ! »\n")
-    stock = ["clé gobeline", "potion de vie", "livre de sort", "anneau aquatique", "baguette d'ordre supérieure", "planche miniature", "cloche", "carte", "fumigène gobeline", "sablier de suspension"]
+    stock = ["clé gobeline", "potion de vie", "livre de sort", "anneau aquatique", "baguette d'ordre supérieure", "planche miniature", "carte", "fumigène gobeline", "sablier de suspension"]
     print("Bonjour !")
     print("Voici nos articles :")
     for i_art in range(len(stock)):
@@ -515,12 +511,179 @@ def sortir_banque(avancer):
     print("Vous avez été trop retardés... Les sbires de Voldemort vous capturent et replacent la coupe... Fin")
     exit()
 
+#################################################################################################
+#################################################################################################
+# Partie 3
+#################################################################################################
+#################################################################################################
+
+def detraqueurs(personnage, hermione, ron, chemin_fichier = "../data/map_détraqueurs.json"):
+    # ils regardent le livre de hermione + sort détraqueur
+    narration_detra(personnage, hermione, ron)
+    map = load_fichier(chemin_fichier)
+    terminer = False
+    pos_j = [15, 9]
+    pos_d = {"d1": {"pos": [3, 11], "furie": False, "stun": False}, "d2": {"pos": [5, 6], "furie": False, "stun": False}, "d3": {"pos": [7, 11], "furie": False, "stun": False}, "d4": {"pos": [9, 8], "furie": False, "stun": False}}
+    sort = 1
+    while terminer == False:
+        print("\n\n\n\n\n\n")
+        afficher_carte(map, pos_j)
+        terminer, pos_j, pos_d, sort = deplacer(map, pos_j, pos_d, personnage, sort)
+    return None
+
+def narration_detra(personnage, hermione, ron):
+    print("Pour rejoindre Voldemort, il va falloir passer par le biais d'un labyrinthe !")
+    print("Hagrid ne peut pas tous vous emmener directement à son repère car c'est un sort très coûteux en énergie")
+    print("Pour t'y rendre, il faudra donc que tu esquives les détraqueurs (D)")
+    print("Quand à toi, tu représentes un '@', le chemin un '.', et les murs des '#'")
+    print("Enfin, les détraqueurs fonctionnent de deux manières :")
+    print("- S'ils ne te voient pas ils èrent aléatoirement")
+    print("- Si tu es à au plus 5 cases d'eux, ils se metterons en mode furie")
+    print("C'est un mode où ils te pourchassent pendant 4 tours jusqu'à être fatigué (stun) pendant 2 tours avant de reprendre la chasse ")
+    print("S'ils t'attrapent... Soit tu essayes de fuir qui peut marcher, soit tu utilises le sort 'Expecto Patronum' !")
+    print("C'est un sort qui étourdis le détraqueur mais n'est utilisable qu'une fois ( trop d'énergie )")
+    input("\nBonne Chance...")
+    ajouter_objet(personnage,"Sortilèges",{"nom": "Expecto Patronum", "description": "Convoque un Patronus pour repousser les Détraqueurs.", "type": "Défensif"})
+
+def afficher_carte(map, pos_j):
+    for ligne in map:
+        print(ligne)
+
+def deplacer(map, pos_j, pos_d, personnage, sort):
+    fini, pos_j = deplacer_j(map, pos_j)
+    if fini:
+        return True, pos_j, pos_d, sort
+    for detra in pos_d:
+        pos_d[detra], sort = deplacer_d(map, pos_d[detra], pos_j, personnage, sort)
+    return False, pos_j, pos_d, sort
+
+def deplacer_j(map, pos_j):
+    cases_deplacement = []
+    directions = []
+    if map[pos_j[0] - 1][pos_j[1]] not in '#D':
+        cases_deplacement.append([pos_j[0] - 1, pos_j[1]])
+        directions.append('haut')
+    if map[pos_j[0]][pos_j[1] + 1] not in '#D':
+        cases_deplacement.append([pos_j[0], pos_j[1] + 1])
+        directions.append('droite')
+    if map[pos_j[0] + 1][pos_j[1]] not in '#D':
+        cases_deplacement.append([pos_j[0] + 1, pos_j[1]])
+        directions.append('bas')
+    if map[pos_j[0]][pos_j[1] - 1] not in '#D':
+        cases_deplacement.append([pos_j[0], pos_j[1] - 1])
+        directions.append('gauche')
+    if directions == []:
+        return False, pos_j
+    choix = demander_choix("\nQuelle direction prendre ?", directions)
+    new_pos = cases_deplacement[choix]
+    if map[new_pos[0]][new_pos[1]] == 'S':
+        return True, new_pos
+    map[pos_j[0]] = map[pos_j[0]][:pos_j[1]] + '.' + map[pos_j[0]][pos_j[1]+1:]
+    map[new_pos[0]] = map[new_pos[0]][:new_pos[1]] + '@' + map[new_pos[0]][new_pos[1]+1:]
+    return False, new_pos
+
+def deplacer_d(map, detra, pos_j, personnage, sort):
+    new_pos = None
+    if abs(pos_j[0] - detra["pos"][0]) + abs(pos_j[1] - detra["pos"][1]) <= 5 and detra["furie"] == 0 and detra["stun"] == 0:
+        detra["furie"] = 4
+    if detra["stun"] != 0:
+        new_pos = detra["pos"]
+        detra["stun"] -= 1
+    elif detra["furie"] == 0:
+        new_pos = deplacer_aleatoirement(map, detra)
+        map[detra["pos"][0]] = map[detra["pos"][0]][:detra["pos"][1]] + '.' + map[detra["pos"][0]][detra["pos"][1] + 1:]
+        map[new_pos[0]] = map[new_pos[0]][:new_pos[1]] + 'D' + map[new_pos[0]][new_pos[1] + 1:]
+        detra["pos"] = new_pos
+    else:
+        dico_pos = {"("+str(detra["pos"][0])+", "+str(detra["pos"][1])+")" : [detra["pos"], 0, []]}
+        for i in range(5):
+            ajout=[]
+            for possibilite in dico_pos:
+                possi = dico_pos[possibilite][0]
+                if ( "("+str(possi[0] - 1)+", "+str(possi[1])+")" not in dico_pos ) and map[possi[0] - 1][possi[1]] not in "#D":
+                    ajout.append(("("+str(possi[0] - 1)+", "+str(possi[1])+")", [(possi[0] - 1, possi[1]), i, dico_pos[possibilite][2]+[0]]))
+
+                if ( "("+str(possi[0])+", "+str(possi[1] + 1)+")" not in dico_pos ) and map[possi[0]][possi[1] + 1] not in "#D":
+                    ajout.append(("("+str(possi[0])+", "+str(possi[1] + 1)+")", [(possi[0], possi[1] + 1), i, dico_pos[possibilite][2]+[1]]))
+
+                if ( "("+str(possi[0] + 1)+", "+str(possi[1])+")" not in dico_pos ) and map[possi[0] + 1][possi[1]] not in "#D":
+                    ajout.append(("("+str(possi[0] + 1)+", "+str(possi[1])+")", [(possi[0] + 1, possi[1]), i, dico_pos[possibilite][2]+[2]]))
+
+                if ( "("+str(possi[0])+", "+str(possi[1] - 1)+")" not in dico_pos ) and map[possi[0]][possi[1] - 1] not in "#D":
+                    ajout.append(("("+str(possi[0])+", "+str(possi[1] - 1)+")", [(possi[0], possi[1] - 1), i, dico_pos[possibilite][2]+[3]]))
+            for j in range(len(ajout)):
+                    dico_pos[ajout[j][0]] = ajout[j][1]
+        for cle in dico_pos:
+            if cle == "("+str(pos_j[0])+", "+str(pos_j[1])+")":
+                ou_aller = dico_pos[cle][2][0]
+                if ou_aller == 0:
+                    new_pos = [detra["pos"][0] - 1, detra["pos"][1]]
+                elif ou_aller == 1:
+                    new_pos = [detra["pos"][0], detra["pos"][1] + 1]
+                elif ou_aller == 2:
+                    new_pos = [detra["pos"][0] + 1, detra["pos"][1]]
+                else:
+                    new_pos = [detra["pos"][0], detra["pos"][1] - 1]
+        if new_pos == None:
+            new_pos = deplacer_aleatoirement(map, detra)
+        if map[new_pos[0]][new_pos[1]] == '@':
+            print()
+            if se_defendre(personnage, sort) == False:
+                print("\nVous vous êtes fait attrapé par un détraqueur... Fin")
+                exit()
+            sort -= 1
+        else:
+            map[detra["pos"][0]] = map[detra["pos"][0]][:detra["pos"][1]] + '.' + map[detra["pos"][0]][detra["pos"][1] + 1:]
+            map[new_pos[0]] = map[new_pos[0]][:new_pos[1]] + 'D' + map[new_pos[0]][new_pos[1] + 1:]
+        detra["pos"] = new_pos
+        detra["furie"] -= 1
+        if detra["furie"] == 0:
+            detra["stun"] = 2
+    return detra, sort
+
+def deplacer_aleatoirement(map, detra):
+    cases_deplacement = []
+    if map[detra["pos"][0] - 1][detra["pos"][1]] not in '#D':
+        cases_deplacement.append([detra["pos"][0] - 1, detra["pos"][1]])
+    if map[detra["pos"][0]][detra["pos"][1] - 1] not in '#D':
+        cases_deplacement.append([detra["pos"][0], detra["pos"][1] - 1])
+    if map[detra["pos"][0] + 1][detra["pos"][1]] not in '#D':
+        cases_deplacement.append([detra["pos"][0] + 1, detra["pos"][1]])
+    if map[detra["pos"][0]][detra["pos"][1] + 1] not in '#D':
+        cases_deplacement.append([detra["pos"][0], detra["pos"][1] + 1])
+    if cases_deplacement == []:
+        return detra["pos"]
+    return cases_deplacement[random.randint(0, len(cases_deplacement) - 1)]
+
+def se_defendre(personnage, sort): # renvoie sort seulement si il est encore en vie
+    rappel_capacite(personnage)
+    choix = demander_choix("\nDéfendez-vous !", ["Utiliser un objet", "Utiliser un sort", "Fuir"])
+    if choix == 0:
+        demander_choix("\nQuel objet utiliser ?", personnage["Inventaire"])
+        print("\nVous essayer mais impossible de vous défendre avec cet objet")
+        return False
+    elif choix == 1:
+        if demander_choix("\nQuel sort utiliser ?", personnage["Sortilèges"])["nom"] == "Expecto Patronum":
+            if sort != 0:
+                print("\n" + personnage["Prénom"] + " : « Expecto Patronum ! »")
+                print("Lancer ce sort vous a épuisé ! Vous n'avez pas l'air d'être en capacité de le relancer...\n")
+                return sort - 1
+    fuite_reussi = random.randint(1,4) == 1 # 25%
+    if not fuite_reussi:
+        print("\nVotre fuite n'a pas aboutie...")
+        return False
+    print("Vous vous êtes échappé !")
+    return sort
+
+
 def lancer_chapitre5(personnage):
     hermione = {'Nom': 'Granger', 'Prenom': 'Hermione', 'Argent': 250, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 10, 'loyauté': 9, 'ambition': 6}}
     ron = {'Nom': 'Weasley', 'Prenom': 'Ron', 'Argent': 40, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 5, 'loyauté': 10, 'ambition': 8}}
-    preparation_persos(personnage, hermione, ron)
-    infiltration(personnage)
-    gringotts(personnage, hermione, ron)
+    # preparation_persos(personnage, hermione, ron)
+    # infiltration(personnage)
+    # gringotts(personnage, hermione, ron)
+    detraqueurs(personnage, hermione, ron)
+    print("\n Bravo mais Voldemort est en vacance... Il n'y aura pas de combat...")
 
 
 lancer_chapitre5(creer_personnage())

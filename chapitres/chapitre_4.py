@@ -88,7 +88,7 @@ def match_quidditch(joueur, maisons):
             msg_vifdor = True
             equipe_gagnante = attraper_vifdor(equipe, equipe_adverse)
         else:
-            print("Appuyez sur Entrée pour continuer...")
+            print("Appuyez sur Entrée pour continuer... ")
             input()
         i += 1
     if msg_vifdor == True:
