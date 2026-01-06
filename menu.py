@@ -11,7 +11,7 @@ def afficher_menu_principal():
 
 def choix_menu():
     tab_chiffre = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    redemande = True  # on l'utilise pour savoir si ce qu'à entrer le joueur est conforme et sans renvoyer d'erreur s'il est entré des lettres
+    redemande = True
     while redemande :
         redemande = False
         afficher_menu_principal()

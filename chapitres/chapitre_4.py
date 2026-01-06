@@ -35,18 +35,14 @@ def tentative_marque(equipe_attaque, equipe_defense, joueur_est_joueur=False):
 def apparition_vifdor():
     return random.randint(1,6)==6
 
-# if __name__ == '__main__':
-#     for i in range(10):
-#         print(apparition_vifdor())
+
 
 def attraper_vifdor(e1, e2):
     attrapeur=random.randint(1,2)
     if attrapeur==1:
-        #e1['score'] += 150
         e1['attrape_vifdor'] = True
         return e1
     else :
-        #e2['score'] += 150
         e2['attrape_vifdor'] = True
         return e2
 
@@ -135,7 +131,3 @@ def lancer_chapitre4_quidditch(joueur, maisons):
     print()
     afficher_personnage(joueur)
 
-if __name__ == "__main__":
-    maisons = {"Gryffondor": 0, "Serpentard": 0, "Poufsouffle": 0, "Serdaigle": 0}
-    joueur = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3},'Maison':"Gryffondor"}
-    lancer_chapitre4_quidditch(joueur, maisons)

@@ -205,20 +205,6 @@ def attraper_medaillon(personnage, pret_attraper):
 #################################################################################################
 #################################################################################################
 
-# Etape0 : Demander de choisir un objet qui nerf un des évènements ou bien qui boost contre Voldemort
-# Etape1 : le dragon ne se réveille pas
-# Etape2 : rappeler les sorts, les objets et tt
-# Etape3 : Débuter les 11 tours
-# Etape4 : A chaque phase : 1 évènement aléatoire :
-
-#alterner entre les personnages qui sont devant : pas les mêmes sorts/ objets
-
-# 1- Les gobelins vous rattrapent ( gardes/ accompagnateur/ renforts ) --> combat léger
-# 2- Un piège se déclenche
-# 3- Le dragon se déchaîne ( 2 attaques différentes )
-# 4- Choisir entre plusieurs chemins
-
-# Etape5 : Si >8 alors win et donc narration fin
 
 
 
@@ -231,8 +217,7 @@ def gringotts(personnage, hermione, ron):
     for i in range(12):
         perso_en_tete = groupe[random.randint(0,2)]
         numero = random.randint(1,11)
-        # J'utilise les probabilités pour faire tomber des évènements plus fréquamment que d'autres
-        if numero - 3 <= 0: # proba = 3/11
+        if numero - 3 <= 0:
             adv = ["gardes", "trésorier", "renforts"][random.randint(0, 2)]
             print("ATTENTION ! Le" + " " * (adv == "trésorier") + "s " * (adv != "trésorier") + adv + " arrive" + "nt" * (adv != "trésorier"), end="")
             input("...")
@@ -242,11 +227,11 @@ def gringotts(personnage, hermione, ron):
                 print("\nVos poursuivants devaient vous rattraper mais ils sont tombés dans votre piège, c'est déjà ça de moins !\n")
             else:
                 avancer += rattraper_gobelins(perso_en_tete, adv)
-        elif numero - 6 <= 0: # proba = 3/11
+        elif numero - 6 <= 0:
             avancer += piege_declenche(perso_en_tete)
-        elif numero - 9 <= 0: # proba = 3/11
+        elif numero - 9 <= 0:
             avancer += choisir_chemin(perso_en_tete)
-        else: # proba = 2/11
+        else:
             res_dragon = (dragon(perso_en_tete))
             avancer += res_dragon[0]
             pieges += res_dragon[1]
@@ -264,7 +249,7 @@ def aide(personnage, hermione, ron):
         print(str(i_art+1) + "- " + stock[i_art])
     groupe_prenom = [personnage["Prenom"], hermione["Prenom"], ron["Prenom"]]
     groupe = [personnage, hermione, ron]
-    for i_pers in range(3): # on donne un objet pour chaque personnage
+    for i_pers in range(3):
         i_objet = demander_nombre("\n" + groupe_prenom[i_pers] + " qu'est ce qui peut t'intéresse ? ", 1, 10) - 1
         ajouter_objet(groupe[i_pers], "Inventaire", stock[i_objet])
     print("\nHagrid : « Bon courage pour la suite, je vous laisse vous occupez du reste ! »\n")
@@ -518,7 +503,6 @@ def sortir_banque(avancer):
 #################################################################################################
 
 def detraqueurs(personnage, hermione, ron, chemin_fichier = "../data/map_détraqueurs.json"):
-    # ils regardent le livre de hermione + sort détraqueur
     narration_detra(personnage, hermione, ron)
     map = load_fichier(chemin_fichier)
     terminer = False
@@ -657,7 +641,7 @@ def deplacer_aleatoirement(map, detra):
         return detra["pos"]
     return cases_deplacement[random.randint(0, len(cases_deplacement) - 1)]
 
-def se_defendre(personnage, sort): # renvoie sort seulement si il est encore en vie
+def se_defendre(personnage, sort):
     rappel_capacite(personnage)
     choix = demander_choix("\nDéfendez-vous !", ["Utiliser un objet", "Utiliser un sort", "Fuir"])
     if choix == 0:

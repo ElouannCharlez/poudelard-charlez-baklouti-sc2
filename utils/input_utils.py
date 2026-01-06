@@ -2,7 +2,7 @@ import json
 
 
 def demander_texte(message):
-    print(message) # Le message n'est pas dans le input pour faire un retour à la ligne
+    print(message)
     saisie = input()
     while saisie.strip() == "":
         print(message)
@@ -10,24 +10,21 @@ def demander_texte(message):
     print()
     return saisie.strip()
 
-# if __name__ == "__main__":
-#     print(demander_texte("saisie un nom : "))
+
 
 def demander_nombre(message, min_val=None, max_val=None):
     tab_chiffre = ["0","1","2","3","4","5","6","7","8","9"]
-    redemande = True    # sert à empêcher les chaines vides ou les chaines qui ne sont pas totalement composées de chiffres
+    redemande = True
     while redemande or ((min_val!=None and min_val>int(val)) or (max_val!=None and max_val<int(val))):
         redemande = False
         val = input(message)
-        if val == "": # interdit les chaines vide
+        if val == "":
             redemande = True
-        for carac in val: # s'assure que la chaine est composée seulement de chiffre
+        for carac in val:
             if carac not in tab_chiffre:
                 redemande = True
     return int(val)
 
-# if __name__ == "__main__":
-#     print(demander_nombre("nb entre 1-9 : ",1,9))
 
 def demander_choix(message, options):
     print(message)
@@ -36,13 +33,10 @@ def demander_choix(message, options):
     choix=demander_nombre("Votre choix : ",1,len(options))
     return choix-1
 
-# if __name__ == "__main__":
-#     print(demander_choix("Voulez-vous continuer ?",['oui','non']))
+
 
 def load_fichier(chemin_fichier):
-    with open(chemin_fichier[1:], 'r', encoding='utf-8') as f:   # enlever le slice si on souhaite tester hors du menu
+    with open(chemin_fichier[1:], 'r', encoding='utf-8') as f:
         donnees = json.load(f)
     return donnees
 
-# if __name__ == "__main__":
-#     print(load_fichier("../data/sorts.json"))

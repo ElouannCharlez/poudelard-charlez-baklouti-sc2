@@ -5,8 +5,6 @@ def introduction():
     print("Bienvenue ! Prépare-toi : le premier chapitre de ton voyage vers Poudlard commence maintenant.")
     input("Appuie sur entrée pour continuer...")
 
-# if __name__ == '__main__':
-    # introduction()
 
 def creer_personnage():
     nom = demander_texte("Entrez le nom de votre personnage : ")
@@ -23,8 +21,6 @@ def creer_personnage():
     afficher_personnage(joueur)
     return joueur
 
-# if __name__ == '__main__':
-    # print(creer_personnage())
 
 def recevoir_lettre():
     print("\nUne chouette traverse la fenêtre et vous apporte une lettre scellée du sceau de Poudlard...")
@@ -38,8 +34,6 @@ def recevoir_lettre():
         exit()
     print()
 
-# if __name__ == '__main__':
-    #recevoir_lettre()
 
 def rencontrer_hagrid(personnage):
     print("\nHagrid : 'Salut ", personnage["Prenom"]," ! Je suis venu t’aider à faire tes achats sur le Chemin de Traverse.'")
@@ -50,9 +44,6 @@ def rencontrer_hagrid(personnage):
         print("Super, on y va !")
     return None
 
-# if __name__ == '__main__':
-    # perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
-    # rencontrer_hagrid(perso)
 
 
 def acheter_fournitures(personnage):
@@ -109,9 +100,7 @@ def acheter_fournitures(personnage):
     print("\nTous les objets obligatoires ont été achetés avec succès ! Voici votre inventaire final :\n")
     afficher_personnage(personnage)
 
-# if __name__ == '__main__':
-#     perso = {'Nom': 'Baklouti', 'Prenom': 'Youssef', 'Argent': 100, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 9, 'loyauté': 8, 'ambition': 3}}
-#     acheter_fournitures(perso)
+
 
 def lancer_chapitre1():
     introduction()
@@ -122,5 +111,3 @@ def lancer_chapitre1():
     print("\nFin du chapitre 1 ! Votre aventure commence à Poudelard... \n")
     return perso
 
-# if __name__== '__main__':
-#     lancer_chapitre1()
