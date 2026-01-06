@@ -628,10 +628,12 @@ def deplacer_d(map, detra, pos_j, personnage, sort):
             new_pos = deplacer_aleatoirement(map, detra)
         if map[new_pos[0]][new_pos[1]] == '@':
             print()
-            if se_defendre(personnage, sort) == False:
+            res = se_defendre(personnage, sort)
+            if res == False:
                 print("\nVous vous êtes fait attrapé par un détraqueur... Fin")
                 exit()
-            sort -= 1
+            elif res == "sort":
+                sort -= 1
         else:
             map[detra["pos"][0]] = map[detra["pos"][0]][:detra["pos"][1]] + '.' + map[detra["pos"][0]][detra["pos"][1] + 1:]
             map[new_pos[0]] = map[new_pos[0]][:new_pos[1]] + 'D' + map[new_pos[0]][new_pos[1] + 1:]
@@ -663,25 +665,27 @@ def se_defendre(personnage, sort): # renvoie sort seulement si il est encore en 
         print("\nVous essayer mais impossible de vous défendre avec cet objet")
         return False
     elif choix == 1:
-        if demander_choix("\nQuel sort utiliser ?", personnage["Sortilèges"])["nom"] == "Expecto Patronum":
-            if sort != 0:
-                print("\n" + personnage["Prénom"] + " : « Expecto Patronum ! »")
+        if personnage["Sortilèges"][demander_choix("\nQuel sort utiliser ?", personnage["Sortilèges"])]["nom"] == "Expecto Patronum":
+            if sort > 0:
+                print("\n" + personnage["Prenom"] + " : « Expecto Patronum ! »")
                 print("Lancer ce sort vous a épuisé ! Vous n'avez pas l'air d'être en capacité de le relancer...\n")
-                return sort - 1
+                return "sort"
+            else:
+                return False
     fuite_reussi = random.randint(1,4) == 1 # 25%
     if not fuite_reussi:
         print("\nVotre fuite n'a pas aboutie...")
         return False
     print("Vous vous êtes échappé !")
-    return sort
+    return "fuite"
 
 
 def lancer_chapitre5(personnage):
     hermione = {'Nom': 'Granger', 'Prenom': 'Hermione', 'Argent': 250, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 10, 'loyauté': 9, 'ambition': 6}}
     ron = {'Nom': 'Weasley', 'Prenom': 'Ron', 'Argent': 40, 'Inventaire': [], 'Sortilèges': [], 'Attributs': {'courage': 7, 'intelligence': 5, 'loyauté': 10, 'ambition': 8}}
-    # preparation_persos(personnage, hermione, ron)
-    # infiltration(personnage)
-    # gringotts(personnage, hermione, ron)
+    preparation_persos(personnage, hermione, ron)
+    infiltration(personnage)
+    gringotts(personnage, hermione, ron)
     detraqueurs(personnage, hermione, ron)
     print("\n Bravo mais Voldemort est en vacance... Il n'y aura pas de combat...")
 
