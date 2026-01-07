@@ -447,7 +447,7 @@ def dragon(personnage):
     input("...")
     print()
     rappel_capacite(personnage)
-    if random.randint(1,10) <= 6: # proba de 60%
+    if random.randint(1,10) <= 6:
         return dragon_attaque(personnage)
     return dragon_lave(personnage)
 
@@ -656,7 +656,7 @@ def se_defendre(personnage, sort):
                 return "sort"
             else:
                 return False
-    fuite_reussi = random.randint(1,4) == 1 # 25%
+    fuite_reussi = random.randint(1,4) == 1
     if not fuite_reussi:
         print("\nVotre fuite n'a pas aboutie...")
         return False
