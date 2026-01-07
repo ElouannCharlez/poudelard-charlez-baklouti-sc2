@@ -673,5 +673,3 @@ def lancer_chapitre5(personnage):
     detraqueurs(personnage, hermione, ron)
     print("\n Bravo mais Voldemort est en vacance... Il n'y aura pas de combat...")
 
-
-lancer_chapitre5(creer_personnage())

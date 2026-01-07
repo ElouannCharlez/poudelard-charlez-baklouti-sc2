@@ -63,7 +63,7 @@ def acheter_fournitures(personnage):
                print(objets_obli[i][0] + ", "*(restants!=1), end="")
                restants -= 1
        numero = demander_nombre("\n\nEntrez le numéro de l'objet à acheter : ", 1, 8)
-       if inventaire[str(numero)] in personnage["Inventaire"]:
+       if inventaire[str(numero)][0] in personnage["Inventaire"]:
            print("\nObjet déjà acheté ! \n")
        else:
            if personnage["Argent"] - inventaire[str(numero)][1] < 0:
