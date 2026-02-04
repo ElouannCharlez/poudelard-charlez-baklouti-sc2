@@ -27,13 +27,6 @@ Répartition :
 Youssef : utils, maison, chap2, menu, chap4
 Elouann : utils, personnage, chap1, chap3, chap5
 
-ATTENTION : POUR LE CHAPITRE 5 : DANS LE LANCER CHAPITRE 5 IL Y A 3 COMMENTAIRES EN TROP, C'EST À DIRE QU'IL Y A CELA : 
-# preparation_persos(personnage, hermione, ron)
-# infiltration(personnage)
-# gringotts(personnage, hermione, ron)
-IL SUFFIT JUSTE D'ENLEVER LES # DEVANT CAR CES FONCTIONS CORRESPONDENT À LA PARTIE 1 ET 2 DU FILM 7
-MERCI POUR VOTRE ATTENTION
-
 Gestion des Entrées et Erreurs :
 Pour les entrées, nous les avons minimiser et utilisé sans laisser aucune possibilité d'erreur si le scénario est bien suivi
 Nous avons essayer d'empêcher un maximum d'erreurs en installant des sécurités
